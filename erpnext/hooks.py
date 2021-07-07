@@ -7,10 +7,11 @@ app_publisher = "Frappe Technologies Pvt. Ltd."
 app_description = """ERP made simple"""
 app_icon = "fa fa-th"
 app_color = "#e74c3c"
-app_email = "info@erpnext.com"
+app_email = "lucas.silluzio@snlv.com.br"
 app_license = "GNU General Public License (v3)"
 source_link = "https://github.com/frappe/erpnext"
-app_logo_url = "/assets/erpnext/images/erpnext-logo.svg"
+app_logo_url = "/assets/erpnext/images/ico_abla.ico"
+#app_logo_url = "/assets/erpnext/images/erpnext-logo.svg"
 
 
 develop_version = '13.x.x-develop'
