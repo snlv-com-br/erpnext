@@ -26,7 +26,7 @@
  "owner": "Administrator",
  "steps": [
   {
-   "step": "Introduction to Buying"
+   "step": "Introdução ao módulo de compras"
   },
   {
    "step": "Create a Supplier"
@@ -47,7 +47,7 @@
    "step": "Buying Settings"
   }
  ],
- "subtitle": "Products, Purchases, Analysis, and more.",
+ "subtitle": "Produtos, Compras, Análise, e mais.",
  "success_message": "The Buying Module is all set up!",
- "title": "Let's Set Up the Buying Module."
+ "title": "Vamos Configurar o Módulo de Compra."
 }
