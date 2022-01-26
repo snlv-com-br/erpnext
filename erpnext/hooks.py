@@ -3,14 +3,14 @@ from frappe import _
 
 app_name = "erpnext"
 app_title = "ERPNext"
-app_publisher = "Frappe Technologies Pvt. Ltd."
+app_publisher = "ABLA"
 app_description = """ERP made simple"""
-app_icon = "fa fa-th"
+app_icon = "fa fa-th-list"
 app_color = "#e74c3c"
 app_email = "info@erpnext.com"
 app_license = "GNU General Public License (v3)"
-source_link = "https://github.com/frappe/erpnext"
-app_logo_url = "/assets/erpnext/images/erpnext-logo.svg"
+source_link = "https://github.com/snlv-com-br/erpnext"
+app_logo_url = "/assets/erpnext/images/abla-logo.svg"
 
 
 develop_version = '13.x.x-develop'
@@ -58,7 +58,18 @@ on_logout = "erpnext.e_commerce.shopping_cart.utils.clear_cart_count"
 treeviews = ['Account', 'Cost Center', 'Warehouse', 'Item Group', 'Customer Group', 'Sales Person', 'Territory', 'Assessment Group', 'Department']
 
 # website
-update_website_context = ["erpnext.e_commerce.shopping_cart.utils.update_website_context", "erpnext.education.doctype.education_settings.education_settings.update_website_context"]
+website_context = {
+	"favicon": 	"/assets/erpnext/images/abla-logo.svg",
+	"splash_image": "/assets/erpnext/images/abla-logo.svg",
+	"logo": "/assets/erpnext/images/abla-logo.svg",
+	"app_name": "ABLA"
+}
+
+update_website_context = [
+	"erpnext.e_commerce.shopping_cart.utils.update_website_context", 
+	"erpnext.education.doctype.education_settings.education_settings.update_website_context",
+	"erpnext.login.settings.update_website_context"
+]
 my_account_context = "erpnext.e_commerce.shopping_cart.utils.update_my_account_context"
 webform_list_context = "erpnext.controllers.website_list_for_contact.get_webform_list_context"
 
@@ -78,11 +89,6 @@ domains = {
 
 website_generators = ["Item Group", "Website Item", "BOM", "Sales Partner",
 	"Job Opening", "Student Admission"]
-
-website_context = {
-	"favicon": 	"/assets/erpnext/images/erpnext-favicon.svg",
-	"splash_image": "/assets/erpnext/images/erpnext-logo.svg"
-}
 
 website_route_rules = [
 	{"from_route": "/orders", "to_route": "Sales Order"},
@@ -413,7 +419,7 @@ scheduler_events = {
 	]
 }
 
-email_brand_image = "assets/erpnext/images/erpnext-logo.jpg"
+email_brand_image = "assets/erpnext/images/abla-logo.jpg"
 
 default_mail_footer = """
 	<span>
