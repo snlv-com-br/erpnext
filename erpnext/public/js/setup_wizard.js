@@ -83,8 +83,8 @@ erpnext.setup.slides_settings = [
 			}).val(frappe.boot.sysdefaults.company_name || "").trigger("change");
 
 			slide.get_input("company_abbr").on("change", function () {
-				if (slide.get_input("company_abbr").val().length > 5) {
-					frappe.msgprint(__("Company Abbreviation cannot have more than 5 characters"));
+				if (slide.get_input("company_abbr").val().length > 10) {
+					frappe.msgprint(__("Company Abbreviation cannot have more than 10 characters"));
 					slide.get_field("company_abbr").set_value("");
 				}
 			});
@@ -97,7 +97,7 @@ erpnext.setup.slides_settings = [
 			if (!this.values.company_abbr) {
 				return false;
 			}
-			if (this.values.company_abbr.length > 5) {
+			if (this.values.company_abbr.length > 10) {
 				return false;
 			}
 			return true;
