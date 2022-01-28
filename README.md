@@ -7,6 +7,7 @@ Branch "version-13" representa a versão do ERP utilizada em produção. Com imp
 *Para acompanhar o guia recomenda-se familiaridade com a estrutura do frappe/bench utilizada - Ref.: 
 
 . https://frappeframework.com/docs/v13/user/en/basics/architecture
+
 . https://www.youtube.com/watch?v=eCAMPcl7NKc&list=PL3lFfCEoMxvzHtsZHFJ4T3n5yMM3nGJ1W&index=1
 
 ### Instalação
