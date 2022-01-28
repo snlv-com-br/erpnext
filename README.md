@@ -29,7 +29,7 @@ Utilizando o VSCode é possível fazer alterações dentro do código do ERPNext
 
 Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/version-13/erpnext/hooks.py) para alterações de html e css, e outras manipulações de variáveis.
 
-### Guia para Produção -> Ubuntu 20.04
+## Guia para Produção -> Ubuntu 20.04
 
 Para instalação em ambiente de produção utilizou-se as seguintes fontes de referência:
 
