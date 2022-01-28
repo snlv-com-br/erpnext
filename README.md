@@ -16,7 +16,7 @@ Para realizar o setup do erpnext para configuração local utiliza-se o Docker. 
 
 https://github.com/frappe/frappe_docker
 
-Atente à instalação do ERPNext, que deve ser feito usando esse repositório, na branch version-13. 
+Atente à instalação do ERPNext, que deve ser feito usando esse repositório na branch version-13. 
 Executando, por exemplo, o comando:
 
 ```
