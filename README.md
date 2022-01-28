@@ -29,6 +29,21 @@ Utilizando o VSCode é possível fazer alterações dentro do código do ERPNext
 
 Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/version-13/erpnext/hooks.py) para alterações de html e css, e outras manipulações de variáveis.
 
+### Produção
+
+Para instalação em ambiente de produção utilizou-se as seguintes fontes de referência:
+
+. https://github.com/frappe/frappe/wiki/The-Hitchhiker%27s-Guide-to-Installing-Frappe-on-Linux#tried-and-tested
+
+. Para erro de permissão ao autenticar com servidor mariadb:
+    https://discuss.erpnext.com/t/fresh-install-ends-with-error-access-denied-for-user-root-localhost/70519/2
+    
+. Para configuração de multi tenancy, supervisor e nginx
+    https://codewithkarani.com/2021/09/16/setup-erpnext-for-production/
+    https://codewithkarani.com/2021/08/24/setting-up-multi-tenancy-in-erpnext/
+   
+<br/>
+
 <div align="center">
     <img src="https://raw.githubusercontent.com/frappe/erpnext/develop/erpnext/public/images/erpnext-logo.png" height="128">
     <h2>ERPNext</h2>
