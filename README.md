@@ -1,3 +1,33 @@
+# ERPNext - ABLA
+
+Branch "version-13" representa a versão do ERP utilizada em produção. Com implementação do circleCI, commits feitos aqui sofrem deploy automático para máquina hospedada na AWS.
+
+## Guia para desenvolvimento
+
+*Para acompanhar o guia recomenda-se familiaridade com a estrutura do frappe/bench utilizada - Ref.: 
+
+. https://frappeframework.com/docs/v13/user/en/basics/architecture
+. https://www.youtube.com/watch?v=eCAMPcl7NKc&list=PL3lFfCEoMxvzHtsZHFJ4T3n5yMM3nGJ1W&index=1
+
+### Instalação
+
+Para realizar o setup do erpnext para configuração local utiliza-se o Docker. Existe um guia oficial indicando os passos necessários:
+
+https://github.com/frappe/frappe_docker
+
+Atente à instalação do ERPNext, que deve ser feito usando esse repositório, na branch version-13. 
+Executando, por exemplo, o comando:
+
+```
+bench get-app --branch version-13 erpnext https://github.com/snlv-com-br/erpnext
+```
+
+### Alterações
+
+Utilizando o VSCode é possível fazer alterações dentro do código do ERPNext, após propagar essa alterações, com *bench build* ou outros comando apropriados da [CLI Bench](https://frappeframework.com/docs/v13/user/en/bench/resources/bench-commands-cheatsheet), basta subir as alterações para esse repositório.
+
+Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/version-13/erpnext/hooks.py) alterações de html e css, e outras manipulações de variáveis.
+
 <div align="center">
     <img src="https://raw.githubusercontent.com/frappe/erpnext/develop/erpnext/public/images/erpnext-logo.png" height="128">
     <h2>ERPNext</h2>
