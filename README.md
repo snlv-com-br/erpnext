@@ -59,7 +59,7 @@ Para instalação em ambiente de produção utilizou-se as seguintes fontes de r
 
 </div>
 
-- ERPNext as a monolith includes the following areas for managing businesses:
+- ~ ERPNext ~ as a monolith includes the following areas for managing businesses:
 
 1. [Accounting](https://erpnext.com/open-source-accounting)
 1. [Warehouse Management](https://erpnext.com/distribution/warehouse-management-system)
