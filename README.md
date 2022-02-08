@@ -66,43 +66,28 @@ O arquivo (_.csv ou .xlsl_) precisa `obrigatoriamente` conter os seguintes campo
 
 Ademais são incluídos os seguintes campos `não-obrigatórios`:
 
--Nome completo
-
--NIF/NIPC
-
--ID de Email
-
--Nr. de Telemóvel
-
--Endereço primário
-
--Dados do cliente
+- Nome completo
+- NIF/NIPC
+- ID de Email
+- Nr. de Telemóvel
+- Endereço primário
+- Dados do cliente
 
 <img alt="" src="https://media.discordapp.net/attachments/940697375767416883/940705731928277064/unknown.png">
 
 Os campos são preenchidos com as seguintes informações:
 
--ID= _`esse campo fica vazio`_
-
--Tipo= _`Company`_ ou _`Individual`_
-
--Grupo de clientes= _`Uma das opções criadas na seção`_
-
--Território= _`Uma das opções criadas na seção`_
-
--Setor= _`Uma das opções criadas na seção`_
-
--Nome completo= _`Nome completo do cliente`_
-
--NIF/NIPC= _`CPF`_ ou _`CNPJ`_
-
--ID de Email= _`Email do cliente`_
-
--Nr. de Telemóvel= _`Telefone do cliente`_
-
--Endereço primário= _`CEP, endereço, número e bairro`_
-
--Dados do cliente= _`Cidade do cliente`_
+- ID= _`esse campo fica vazio`_
+- Tipo= _`Company`_ ou _`Individual`_
+- Grupo de clientes= _`Uma das opções criadas na seção`_
+- Território= _`Uma das opções criadas na seção`_
+- Setor= _`Uma das opções criadas na seção`_
+- Nome completo= _`Nome completo do cliente`_
+- NIF/NIPC= _`CPF`_ ou _`CNPJ`_
+- ID de Email= _`Email do cliente`_
+- Nr. de Telemóvel= _`Telefone do cliente`_
+- Endereço primário= _`CEP, endereço, número e bairro`_
+- Dados do cliente= _`Cidade do cliente`_
 ## Guia para Produção -> Ubuntu 20.04
 
 Para instalação em ambiente de produção utilizou-se as seguintes fontes de referência:
