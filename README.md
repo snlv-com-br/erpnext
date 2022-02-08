@@ -28,6 +28,15 @@ bench get-app --branch version-13 erpnext https://github.com/snlv-com-br/erpnext
 Utilizando o VSCode é possível fazer alterações dentro do código do ERPNext, após propagar essa alterações, com *bench build* ou outros comando apropriados da [CLI Bench](https://frappeframework.com/docs/v13/user/en/bench/resources/bench-commands-cheatsheet), basta subir as alterações para esse repositório.
 
 Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/version-13/erpnext/hooks.py) para alterações de html e css, e outras manipulações de variáveis.
+---
+## Implementando as alterações para uso dos sindicatos
+
+### Inserindo clientes na plataforma:
+
+Pré-requisitos:
+Criação prévia dos seguintes itens: _`Tipo`, `Grupo de clientes`, `Território`, `Setor`_
+
+
 
 ## Guia para Produção -> Ubuntu 20.04
 
