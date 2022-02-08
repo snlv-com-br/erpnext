@@ -32,7 +32,7 @@ Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/ve
 ---
 ## Implementando as alterações para uso dos sindicatos
 
-### Inserindo clientes na plataforma:
+### [📝 Blog] Inserindo clientes na plataforma:
 
 Pré-requisitos:
 
