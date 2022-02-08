@@ -58,15 +58,11 @@ O _`Tipo de Setor`_ é usado para categorizar o porte da empresa, podendo ser _E
 
 O arquivo (_.csv ou .xlsl_) precisa `obrigatoriamente` conter os seguintes campos: 
 
- -ID
-
- -Tipo
-
- -Grupo de clientes
-
- -Território 
-
- -Setor
+ - ID
+ - Tipo
+ - Grupo de clientes
+ - Território 
+ - Setor
 
 Ademais são incluídos os seguintes campos `não-obrigatórios`:
 
