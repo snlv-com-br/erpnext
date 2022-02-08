@@ -42,6 +42,17 @@ O _`Tipo`_ de cliente é pré definido na plataforma como _Empresa_ para pessoa 
 
 <img width="500" alt="" src="https://media.discordapp.net/attachments/940697375767416883/940697388941713418/unknown.png">
 
+Existem alguns _`Grupo de clientes`_ já criados como _Filiado_, _Desfiliado_ e _Parceiro_. Caso haja a necessidade de um novo grupo é possível a criação.  
+
+<img width="500" alt="" src="https://media.discordapp.net/attachments/940697375767416883/940699263053234236/unknown.png">
+
+A lacuna _`Território`_ é obrigatória na importação ou criação de novos clientes, sendo assim já existe cadastrado o território _Brazil_, com z mesmo. 
+
+<img width="500" alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940700230838526022/unknown.png">
+
+O _``_ é usado para categorizar o porte da empresa, podendo ser _EPP_, _ME_, _MEDIA_, _MEDIA GRANDE_ ou _GRANDE_.
+
+<img width="500" alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940700671093669938/unknown.png">
 
 ## Guia para Produção -> Ubuntu 20.04
 
