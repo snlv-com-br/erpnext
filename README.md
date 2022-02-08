@@ -36,7 +36,7 @@ Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/ve
 
 Pré-requisitos:
 
-Criação prévia dos seguintes itens: _`Tipo`, `Grupo de clientes`, `Território`, `Setor`_
+#### Criação prévia dos seguintes itens: _`Tipo`, `Grupo de clientes`, `Território`, `Setor`_
 
 O _`Tipo`_ de cliente é pré definido na plataforma como _Empresa_ para pessoa jurídica ou _Individual_ para pessoa física. No caso, basta inserir no csv uma das opções usando o _`Company`_ ou _`Individual`_.
 
@@ -50,10 +50,41 @@ A lacuna _`Território`_ é obrigatória na importação ou criação de novos c
 
 <img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940700230838526022/unknown.png">
 
-O _``_ é usado para categorizar o porte da empresa, podendo ser _EPP_, _ME_, _MEDIA_, _MEDIA GRANDE_ ou _GRANDE_.
+O _`Tipo de Setor`_ é usado para categorizar o porte da empresa, podendo ser _EPP_, _ME_, _MEDIA_, _MEDIA GRANDE_ ou _GRANDE_, também é possível a criação de outras categorias.
 
 <img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940700671093669938/unknown.png">
 
+#### Criando o `.csv` para importação:
+
+O arquivo (_.csv ou .xlsl_) precisa `obrigatoriamente` conter os seguintes campos: 
+ -ID
+ -Tipo
+ -Grupo de clientes
+ -Território 
+ -Setor
+
+Ademais são incluídos os seguintes campos `não-obrigatórios`:
+-Nome completo
+-NIF/NIPC
+-ID de Email
+-Nr. de Telemóvel
+-Endereço primário
+-Dados do cliente
+
+<img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940700671093669938/unknown.png">
+
+Os campos são preenchidos com as seguintes informações:
+-ID= _`esse campo fica vazio`_
+-Tipo= _`Company`_ ou _`Individual`_
+-Grupo de clientes= _`Uma das opções criadas na seção`_
+-Território= _`Uma das opções criadas na seção`_
+-Setor= _`Uma das opções criadas na seção`_
+-Nome completo= _`Nome completo do cliente`_
+-NIF/NIPC= _`CPF`_ ou _`CNPJ`_
+-ID de Email= _`Email do cliente`_
+-Nr. de Telemóvel= _`Telefone do cliente`_
+-Endereço primário= _`CEP, endereço, número e bairro`_
+-Dados do cliente= _`Cidade do cliente`_
 ## Guia para Produção -> Ubuntu 20.04
 
 Para instalação em ambiente de produção utilizou-se as seguintes fontes de referência:
