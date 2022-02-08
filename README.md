@@ -82,7 +82,7 @@ Ademais são incluídos os seguintes campos `não-obrigatórios`:
 
 -Dados do cliente
 
-<img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940700671093669938/unknown.png">
+<img alt="" src="https://media.discordapp.net/attachments/940697375767416883/940705731928277064/unknown.png">
 
 Os campos são preenchidos com as seguintes informações:
 
