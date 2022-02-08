@@ -38,6 +38,7 @@ Pré-requisitos:
 
 Criação prévia dos seguintes itens: _`Tipo`, `Grupo de clientes`, `Território`, `Setor`_
 
+<img width="769" alt="" src="https://media.discordapp.net/attachments/940697375767416883/940697388941713418/unknown.png">
 
 
 ## Guia para Produção -> Ubuntu 20.04
