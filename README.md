@@ -79,15 +79,52 @@ Os campos são preenchidos com as seguintes informações:
 
 - ID= _`esse campo fica vazio`_
 - Tipo= _`Company`_ ou _`Individual`_
-- Grupo de clientes= _`Uma das opções criadas na seção`_
-- Território= _`Uma das opções criadas na seção`_
-- Setor= _`Uma das opções criadas na seção`_
+- Grupo de clientes= _`Filiado`_, _`Desfiliado`_ ou _`Parceiro`_
+- Território= _`Brazil`_
+- Setor= _`EPP`_, _`ME`_, _`MEDIA`_, _`MEDIA GRANDE`_ OU _`GRANDE`_
 - Nome completo= _`Nome completo do cliente`_
 - NIF/NIPC= _`CPF`_ ou _`CNPJ`_
 - ID de Email= _`Email do cliente`_
 - Nr. de Telemóvel= _`Telefone do cliente`_
 - Endereço primário= _`CEP, endereço, número e bairro`_
 - Dados do cliente= _`Cidade do cliente`_
+
+
+### 📝 Inserindo potenciais clientes na plataforma:
+
+#### Criando o `.csv` para importação:
+
+O arquivo (_.csv ou .xlsl_) precisa `obrigatoriamente` conter os seguintes campos: 
+
+ - ID
+ - Status
+
+Ademais são incluídos os seguintes campos `não-obrigatórios`:
+
+- Nome da organização
+- Endereço de e-mail
+- Nr. de Telemóvel
+
+<img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940719048273039460/unknown.png">
+
+Os campos são preenchidos com as seguintes informações:
+
+- ID= _`esse campo fica vazio`_
+- Status= _`esse campo fica vazio`_
+- Nome da organização= _`Nome do potencial cliente ou parceiro`_
+- Endereço de e-mail= _`Email do potencial cliente ou parceiro`_
+- Nr. de Telemóvel= _`Telefone do potencial cliente ou parceiro`_
+
+### 📝 Inserindo Subscritos na plataforma:
+#### Para a inclusão dos subscritos na plataforma é necessário criar um _`Item`_ e associá-lo à um _`Plano de assinatura`_:
+
+- _`Item`_: O _item_ é adicionado na seção Estoque. Ele é associado à um grupo e à ele é atribuído um código.
+- _`Plano de assinatura`_: Para criar um novo _Plano de assinatura_ é necessário associá-lo à um _item_ e definir parâmetros como: _intervalo_, _custo_ etc.
+
+<img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940725375103815780/unknown.png">
+
+
+
 ## Guia para Produção -> Ubuntu 20.04
 
 Para instalação em ambiente de produção utilizou-se as seguintes fontes de referência:
