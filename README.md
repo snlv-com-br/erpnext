@@ -123,8 +123,29 @@ Os campos são preenchidos com as seguintes informações:
 
 <img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940725375103815780/unknown.png">
 
+#### Criando o `.csv` para importação de subscritos:
 
+O arquivo (_.csv ou .xlsl_) precisa `obrigatoriamente` conter os seguintes campos: 
 
+ - ID
+ - Parte
+ - Tipo de Parte
+ - ID (Planos)
+ - Plano (Planos)
+ - Quantidade (Planos)
+
+<img alt="" src="https://cdn.discordapp.com/attachments/940697375767416883/940730610505371768/unknown.png">
+
+Os campos são preenchidos com as seguintes informações:
+
+- ID= _`esse campo fica vazio`_
+- Tipo de Parte= _`Customer`_
+- Parte= _`Nome do cliente assinante`_
+- ID (Planos)= _`esse campo fica vazio`_
+- Plano (Planos)= _`EPP`_, _`ME`_, _`MEDIA`_, _`MEDIA GRANDE`_ ou _`GRANDE`_
+- Quantidade (Planos)= _`1`_
+
+---
 ## Guia para Produção -> Ubuntu 20.04
 
 Para instalação em ambiente de produção utilizou-se as seguintes fontes de referência:
