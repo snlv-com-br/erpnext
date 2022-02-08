@@ -35,6 +35,7 @@ Recomenda-se o uso dos [hooks.py](https://github.com/snlv-com-br/erpnext/blob/ve
 ### Inserindo clientes na plataforma:
 
 Pré-requisitos:
+
 Criação prévia dos seguintes itens: _`Tipo`, `Grupo de clientes`, `Território`, `Setor`_
 
 
