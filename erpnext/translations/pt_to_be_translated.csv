@@ -1,0 +1,2414 @@
+ Items)
+ MATCH
+ or for Department: {0}
+"From Date" can not be greater than or equal to "To Date"
+% Finished Item Quantity
+% Occupied
+% Of Applicant Portfolio
+% Of Total Portfolio
+% Returned
+% Utilization (B + NB) / T
+% Utilization (B / T)
+'Account' in the Accounting section of Customer {0}
+'Default {0} Account' in Company {1}
+'{0}' is not a valid URL
+1 Currency = [?] Fraction|||For e.g. 1 USD = 100 Cent
+80G Number
+80G With Effect From
+90 Above
+<b>Single</b>: Results which require only a single input.|||<br>|||<b>Compound</b>: Results which require multiple event inputs.|||<br>|||<b>Descriptive</b>: Tests which have multiple result components with manual result entry.|||<br>|||<b>Grouped</b>: Test templates which are a group of other test templates.|||<br>|||<b>No Result</b>: Tests with no results, can be ordered and billed but no Lab Test will be created. e.g.. Sub Tests for Grouped results
+<br>|||<h4>Note</h4>|||<ul>|||<li>|||You can use <a href="https://jinja.palletsprojects.com/en/2.11.x/" target="_blank">Jinja tags</a> in <b>Subject</b> and <b>Body</b> fields for dynamic values.|||</li><li>|||    All fields in this doctype are available under the <b>doc</b> object and all fields for the customer to whom the mail will go to is available under the  <b>customer</b> object.|||</li></ul>|||<h4> Examples</h4>|||<!-- {% raw %} -->|||<ul>|||    <li><b>Subject</b>:<br><br><pre><code>Statement Of Accounts for {{ customer.name }}</code></pre><br></li>|||    <li><b>Body</b>: <br><br>|||<pre><code>Hello {{ customer.name }},<br>PFA your Statement Of Accounts from {{ doc.from_date }} to {{ doc.to_date }}.</code> </pre></li>|||</ul>|||<!-- {% endraw %} -->
+<div class="alert">Please don't update it as it can mess up your form. Use the Customize Form View and Custom Fields to set properties!</div>
+<div class="columnHeading">Other Details</div>
+<div class="text-muted text-center">No Matching Bank Transactions Found</div>
+<div class="well">|||Edit list of Series in the box below. Rules:|||<ul>|||<li>Each Series Prefix on a new line.</li>|||<li>Allowed special characters are "/" and "-"</li>|||<li>Optionally, set the number of digits in the series using dot (.) followed by hashes (#). For example, ".####" means that the series will have four digits. Default is five digits.</li>|||</ul>|||Examples:<br>|||INV-<br>|||INV-10-<br>|||INVK-<br>|||INV-.####<br>|||</div>
+<div>|||<h3> All dimensions in centimeter only </h3>|||</div>
+<h3>About Product Bundle</h3>||||||<p>Aggregate group of <b>Items</b> into another <b>Item</b>. This is useful if you are bundling a certain <b>Items</b> into a package and you maintain stock of the packed <b>Items</b> and not the aggregate <b>Item</b>.</p>|||<p>The package <b>Item</b> will have <code>Is Stock Item</code> as <b>No</b> and <code>Is Sales Item</code> as <b>Yes</b>.</p>|||<h4>Example:</h4>|||<p>If you are selling Laptops and Backpacks separately and have a special price if the customer buys both, then the Laptop + Backpack will be a new Product Bundle Item.</p>
+<h3>Client Script Help</h3>|||<p>Client Scripts are executed only on the client-side (i.e. in Forms). Here are some examples to get you started</p>|||<pre><code>||||||// fetch local_tax_no on selection of customer |||// cur_frm.add_fetch(link_field,  source_fieldname,  target_fieldname); |||cur_frm.add_fetch('customer',  'local_tax_no',  'local_tax_no');||||||// additional validation on dates |||frappe.ui.form.on('Task',  'validate',  function(frm) {|||    if (frm.doc.from_date &lt; get_today()) {|||        msgprint('You can not select past date in From Date');|||        validated = false;|||    } |||});||||||// make a field read-only after saving |||frappe.ui.form.on('Task',  {|||    refresh: function(frm) {|||        // use the __islocal value of doc,  to check if the doc is saved or not|||        frm.set_df_property('myfield',  'read_only',  frm.doc.__islocal ? 0 : 1);|||    } |||});||||||// additional permission check|||frappe.ui.form.on('Task',  {|||    validate: function(frm) {|||        if(user=='user1@example.com' &amp;&amp; frm.doc.purpose!='Material Receipt') {|||            msgprint('You are only allowed Material Receipt');|||            validated = false;|||        }|||    } |||});||||||// calculate sales incentive|||frappe.ui.form.on('Sales Invoice',  {|||    validate: function(frm) {|||        // calculate incentives for each person on the deal|||        total_incentive = 0|||        $.each(frm.doc.sales_team,  function(i,  d) {|||            // calculate incentive|||            var incentive_percent = 2;|||            if(frm.doc.base_grand_total &gt; 400) incentive_percent = 4;|||            // actual incentive|||            d.incentives = flt(frm.doc.base_grand_total) * incentive_percent / 100;|||            total_incentive += flt(d.incentives)|||        });|||        frm.doc.total_incentive = total_incentive;|||    } |||})||||||</code></pre>
+<h3>Custom CSS Help</h3>||||||<p>Notes:</p>||||||<ol>|||<li>All field groups (label + value) are set attributes <code>data-fieldtype</code> and <code>data-fieldname</code></li>|||<li>All values are given class <code>value</code></li>|||<li>All Section Breaks are given class <code>section-break</code></li>|||<li>All Column Breaks are given class <code>column-break</code></li>|||</ol>||||||<h4>Examples</h4>||||||<p>1. Left align integers</p>||||||<pre><code>[data-fieldtype="Int"] .value { text-align: left; }</code></pre>||||||<p>1. Add border to sections except the last section</p>||||||<pre><code>.section-break { padding: 30px 0px; border-bottom: 1px solid #eee; }|||.section-break:last-child { padding-bottom: 0px; border-bottom: 0px;  }</code></pre>|||
+<h3>Help</h3>||||||<p>Notes:</p>||||||<ol>|||<li>Use field <code>base</code> for using base salary of the Employee</li>|||<li>Use Salary Component abbreviations in conditions and formulas. <code>BS = Basic Salary</code></li>|||<li>Use field name for employee details in conditions and formulas. <code>Employment Type = employment_type</code><code>Branch = branch</code></li>|||<li>Use field name from Salary Slip in conditions and formulas. <code>Payment Days = payment_days</code><code>Leave without pay = leave_without_pay</code></li>|||<li>Direct Amount can also be entered based on Condition. See example 3</li></ol>||||||<h4>Examples</h4>|||<ol>|||<li>Calculating Basic Salary based on <code>base</code>|||<pre><code>Condition: base &lt; 10000</code></pre>|||<pre><code>Formula: base * .2</code></pre></li>|||<li>Calculating HRA based on Basic Salary<code>BS</code> |||<pre><code>Condition: BS &gt; 2000</code></pre>|||<pre><code>Formula: BS * .1</code></pre></li>|||<li>Calculating TDS based on Employment Type<code>employment_type</code> |||<pre><code>Condition: employment_type=="Intern"</code></pre>|||<pre><code>Amount: 1000</code></pre></li>|||</ol>
+<h3>Print Format Help</h3>|||<hr>|||<h4>Introduction</h4>|||<p>Print Formats are rendered on the server side using the Jinja Templating Language. All forms have access to the <code>doc</code> object which contains information about the document that is being formatted. You can also access common utilities via the <code>frappe</code> module.</p>|||<p>For styling, the Boostrap CSS framework is provided and you can enjoy the full range of classes.</p>|||<hr>|||<h4>References</h4>|||<ol>|||	<li><a href="http://jinja.pocoo.org/docs/templates/" target="_blank">Jinja Templating Language</a></li>|||	<li><a href="http://getbootstrap.com" target="_blank">Bootstrap CSS Framework</a></li>|||</ol>|||<hr>|||<h4>Example</h4>|||<pre><code>&lt;h3&gt;{{ doc.select_print_heading or "Invoice" }}&lt;/h3&gt;|||&lt;div class="row"&gt;|||	&lt;div class="col-md-3 text-right"&gt;Customer Name&lt;/div&gt;|||	&lt;div class="col-md-9"&gt;{{ doc.customer_name }}&lt;/div&gt;|||&lt;/div&gt;|||&lt;div class="row"&gt;|||	&lt;div class="col-md-3 text-right"&gt;Date&lt;/div&gt;|||	&lt;div class="col-md-9"&gt;{{ doc.get_formatted("invoice_date") }}&lt;/div&gt;|||&lt;/div&gt;|||&lt;table class="table table-bordered"&gt;|||	&lt;tbody&gt;|||		&lt;tr&gt;|||			&lt;th&gt;Sr&lt;/th&gt;|||			&lt;th&gt;Item Name&lt;/th&gt;|||			&lt;th&gt;Description&lt;/th&gt;|||			&lt;th class="text-right"&gt;Qty&lt;/th&gt;|||			&lt;th class="text-right"&gt;Rate&lt;/th&gt;|||			&lt;th class="text-right"&gt;Amount&lt;/th&gt;|||		&lt;/tr&gt;|||		{%- for row in doc.items -%}|||		&lt;tr&gt;|||			&lt;td style="width: 3%;"&gt;{{ row.idx }}&lt;/td&gt;|||			&lt;td style="width: 20%;"&gt;|||				{{ row.item_name }}|||				{% if row.item_code != row.item_name -%}|||				&lt;br&gt;Item Code: {{ row.item_code}}|||				{%- endif %}|||			&lt;/td&gt;|||			&lt;td style="width: 37%;"&gt;|||				&lt;div style="border: 0px;"&gt;{{ row.description }}&lt;/div&gt;&lt;/td&gt;|||			&lt;td style="width: 10%; text-align: right;"&gt;{{ row.qty }} {{ row.uom or row.stock_uom }}&lt;/td&gt;|||			&lt;td style="width: 15%; text-align: right;"&gt;{{|||				row.get_formatted("rate", doc) }}&lt;/td&gt;|||			&lt;td style="width: 15%; text-align: right;"&gt;{{|||				row.get_formatted("amount", doc) }}&lt;/td&gt;|||		&lt;/tr&gt;|||		{%- endfor -%}|||	&lt;/tbody&gt;|||&lt;/table&gt;</code></pre>|||<hr>|||<h4>Common Functions</h4>|||<table class="table table-bordered">|||	<tbody>|||		<tr>|||			<td style="width: 30%;"><code>doc.get_formatted("[fieldname]", [parent_doc])</code></td>|||			<td>Get document value formatted as Date, Currency, etc. Pass parent <code>doc</code> for currency type fields.</td>|||		</tr>|||		<tr>|||			<td style="width: 30%;"><code>frappe.db.get_value("[doctype]", "[name]", "fieldname")</code></td>|||			<td>Get value from another document.</td>|||		</tr>|||	</tbody>|||</table>|||
+<h4>Body Text and Closing Text Example</h4>||||||<div>We have noticed that you have not yet paid invoice {{sales_invoice}} for {{frappe.db.get_value("Currency", currency, "symbol")}} {{outstanding_amount}}. This is a friendly reminder that the invoice was due on {{due_date}}. Please pay the amount due immediately to avoid any further dunning cost.</div>||||||<h4>How to get fieldnames</h4>||||||<p>The fieldnames you can use in your template are the fields in the document. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>||||||<h4>Templating</h4>||||||<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class="strong" href="http://jinja.pocoo.org/docs/dev/templates/">read this documentation.</a></p>
+<h4>Condition Examples</h4>|||<ol>|||<li>Applying tax if employee born between 31-12-1937 and 01-01-1958 (Employees aged 60 to 80)<br>|||<code>Condition: date_of_birth&gt;date(1937, 12, 31) and date_of_birth&lt;date(1958, 01, 01)</code></li><br><li>Applying tax by employee gender<br>|||<code>Condition: gender=="Male"</code></li><br>|||<li>Applying tax by Salary Component<br>|||<code>Condition: base &gt; 10000</code></li></ol>
+<h4>Contract Template Example</h4>||||||<pre>Contract for Customer {{ party_name }}||||||-Valid From : {{ start_date }} |||-Valid To : {{ end_date }}|||</pre>||||||<h4>How to get fieldnames</h4>||||||<p>The field names you can use in your Contract Template are the fields in the Contract for which you are creating the template. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Contract)</p>||||||<h4>Templating</h4>||||||<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class="strong" href="http://jinja.pocoo.org/docs/dev/templates/">read this documentation.</a></p>
+<h4>Default Template</h4>|||<p>Uses <a href="http://jinja.pocoo.org/docs/templates/">Jinja Templating</a> and all the fields of Address (including Custom Fields if any) will be available</p>|||<pre><code>{{ address_line1 }}&lt;br&gt;|||{% if address_line2 %}{{ address_line2 }}&lt;br&gt;{% endif -%}|||{{ city }}&lt;br&gt;|||{% if state %}{{ state }}&lt;br&gt;{% endif -%}|||{% if pincode %} PIN:  {{ pincode }}&lt;br&gt;{% endif -%}|||{{ country }}&lt;br&gt;|||{% if phone %}Phone: {{ phone }}&lt;br&gt;{% endif -%}|||{% if fax %}Fax: {{ fax }}&lt;br&gt;{% endif -%}|||{% if email_id %}Email: {{ email_id }}&lt;br&gt;{% endif -%}|||</code></pre>
+<h4>Email Reply Example</h4>||||||<pre>Order Overdue||||||Transaction {{ name }} has exceeded Due Date. Please take necessary action.||||||Details||||||- Customer: {{ customer }}|||- Amount: {{ grand_total }}|||</pre>||||||<h4>How to get fieldnames</h4>||||||<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>||||||<h4>Templating</h4>||||||<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class="strong" href="http://jinja.pocoo.org/docs/dev/templates/">read this documentation.</a></p>|||
+<h4>Standard Terms and Conditions Example</h4>||||||<pre>Delivery Terms for Order number {{ name }}||||||-Order Date : {{ transaction_date }} |||-Expected Delivery Date : {{ delivery_date }}|||</pre>||||||<h4>How to get fieldnames</h4>||||||<p>The fieldnames you can use in your email template are the fields in the document from which you are sending the email. You can find out the fields of any documents via Setup &gt; Customize Form View and selecting the document type (e.g. Sales Invoice)</p>||||||<h4>Templating</h4>||||||<p>Templates are compiled using the Jinja Templating Language. To learn more about Jinja, <a class="strong" href="http://jinja.pocoo.org/docs/dev/templates/">read this documentation.</a></p>
+<h5 class="text-muted uppercase">Or</h5>
+<h5>Message Example</h5>||||||<pre>&lt;h3&gt;Order Overdue&lt;/h3&gt;||||||&lt;p&gt;Transaction {{ doc.name }} has exceeded Due Date. Please take necessary action.&lt;/p&gt;||||||&lt;!-- show last comment --&gt;|||{% if comments %}|||Last comment: {{ comments[-1].comment }} by {{ comments[-1].by }}|||{% endif %}||||||&lt;h4&gt;Details&lt;/h4&gt;||||||&lt;ul&gt;|||&lt;li&gt;Customer: {{ doc.customer }}|||&lt;li&gt;Amount: {{ doc.grand_total }}|||&lt;/ul&gt;|||</pre>
+<label class="control-label" style="margin-bottom: 0px;">Account Number Settings</label>
+<label class="control-label" style="margin-bottom: 0px;">Amount In Words</label>
+<label class="control-label" style="margin-bottom: 0px;">Date Settings</label>
+<p><strong>Condition Examples:</strong></p>|||<pre>doc.status=="Open"<br>doc.due_date==nowdate()<br>doc.total &gt; 40000|||</pre>
+<p><strong>Condition Examples:</strong></p>|||<pre>doc.status=="Open"<br>doc.due_date==nowdate()<br>doc.total &gt; 40000|||</pre>|||
+<p>Set context before rendering a template. Example:</p><p>|||</p><div><pre><code>|||context.project = frappe.get_doc("Project", frappe.form_dict.name)|||</code></pre></div>
+<p>Your OTP secret on {0} has been reset. If you did not perform this reset and did not request it, please contact your System Administrator immediately.</p>
+<pre><code>doc.grand_total &gt; 0</code></pre>||||||<p>Conditions should be written in simple Python. Please use properties available in the form only.</p>|||<p>Allowed functions: |||</p><ul>|||<li>frappe.db.get_value</li>|||<li>frappe.db.get_list</li>|||<li>frappe.session</li>|||<li>frappe.utils.now_datetime</li>|||<li>frappe.utils.get_datetime</li>|||<li>frappe.utils.add_to_date</li>|||<li>frappe.utils.now</li>|||</ul>|||<p>Example: </p><pre><code>doc.creation &gt; frappe.utils.add_to_date(frappe.utils.now_datetime(), days=-5, as_string=True, as_datetime=True) </code></pre><p></p>
+<pre><h5>Message Example</h5>||||||&lt;p&gt; Thank You for being a part of {{ doc.company }}! We hope you are enjoying the service.&lt;/p&gt;||||||&lt;p&gt; Please find enclosed the E Bill statement. The outstanding amount is {{ doc.grand_total }}.&lt;/p&gt;||||||&lt;p&gt; We don't want you to be spending time running around in order to pay for your Bill.<br>After all, life is beautiful and the time you have in hand should be spent to enjoy it!<br>So here are our little ways to help you get more time for life! &lt;/p&gt;||||||&lt;a href="{{ payment_url }}"&gt; click here to pay &lt;/a&gt;||||||</pre>|||
+<pre><h5>Message Example</h5>||||||&lt;p&gt;Dear {{ doc.contact_person }},&lt;/p&gt;||||||&lt;p&gt;Requesting payment for {{ doc.doctype }}, {{ doc.name }} for {{ doc.grand_total }}.&lt;/p&gt;||||||&lt;a href="{{ payment_url }}"&gt; click here to pay &lt;/a&gt;||||||</pre>|||
+A GSTIN must have 15 characters.
+A customer must have primary contact email.
+A fatura já existe na lista
+A friendly reminder of an important date for our team.
+A name by which you will identify this template. You can change this later.
+A template with tax category {0} already exists. Only one template is allowed with each tax category
+A0
+A1
+A2
+A3
+A5
+A6
+A7
+A8
+A9
+AGE
+API Key cannot be regenerated
+AWB Number
+About
+About Us
+Acceptance Criteria Formula
+Acceptance Criteria Value
+Accepted Qty in Stock UOM
+Account Number Length
+Account Opening Balance
+Account for accepting donation payments
+Account for accepting membership payments
+Account not Found
+Account {0} already exists. Please enter a different name for your bank account.
+Account {0} appears multiple times
+Account: {0} does not exist
+Accounting Dimension Filter
+Accrual Type
+Accrued Interest
+Action If Quality Inspection Is Rejected
+Action If Same Rate is Not Maintained
+Action Label
+Action if Same Rate is Not Maintained Throughout Sales Cycle
+Active Directory
+Actual Balance Qty
+Actual Manufactured Qty
+Add / Edit Fields
+Add / Remove Columns
+Add Corrective Operation Cost in Finished Good Valuation
+Add Discount
+Add Items in the Purpose Table
+Add Multiple Service Units
+Add Or Deduct
+Add Tags
+Add Template
+Add a Filter
+Add a row above the current row
+Add a row at the bottom
+Add a row at the top
+Add a row below the current row
+Add to Quote
+Add to this activity by mailing to {0}
+Additional
+Additional Discount Account
+Additional Information 
+Additional Salary for referral bonus can only be created against Employee Referral with status {0}
+Address Lines, City, Pincode, GSTIN are mandatory for address {}. Please set them and try again.
+Address lines and city is mandatory for address {}. Please set them and try again.
+Adds a custom client script to a DocType
+Adjust Asset Value
+Adjustment (SAR)
+Adjustment Against
+Admissions
+Advance Tax
+Advance Taxes and Charges
+Advance paid against {0} {1} cannot be greater than Grand Total {2}
+Against Customer Order {0} dated {1}
+Ageing Report based on 
+Agent Busy Message
+Agent Group
+Agent Unavailable Message
+Aggregate group of **Items** into another **Item**. This is useful if you are bundling a certain **Items** into a package and you maintain stock of the packed **Items** and not the aggregate **Item**. ||||||The package **Item** will have "Is Stock Item" as "No" and "Is Sales Item" as "Yes".||||||For Example: If you are selling Laptops and Backpacks separately and have a special price if the customer buys both, then the Laptop + Backpack will be a new Product Bundle Item.||||||Note: BOM = Bill of Materials
+Alcohol past use
+Alcohol use
+All Items
+All Results
+All fields are necessary to submit the comment.
+All items in this document already have a linked Quality Inspection.
+All possible Workflow States and roles of the workflow. Docstatus Options: 0 is "Saved", 1 is "Submitted" and 2 is "Cancelled"
+All the drugs are available with sufficient qty to process this Inpatient Medication Entry.
+Allerigies
+Allocated Entries
+Allow Alternative Item must be checked on Item {}
+Allow Continuous Material Consumption
+Allow Discharge Despite Unbilled Healthcare Services
+Allow Excess Material Transfer
+Allow Invoicing for Memberships
+Allow Or Restrict Dimension
+Allow User to Edit Discount
+Allow User to Edit Rate
+Allow Zero Rate
+Allow material consumptions without immediately manufacturing finished goods against a Work Order
+Allow transferring raw materials even after the Required Quantity is fulfilled
+Allowed Dimension
+Allowed Modules
+Allowed primary roles are 'Customer' and 'Supplier'. Please select one of these roles only.
+Already Published
+Alternatively, you can download the template and fill your data in.
+Always use this email address as sender address
+Always use this name as sender name
+Amended document gets the name of the original document if enabled and will be applicable to all submittable doctypes. This is a nonreversible operation. 
+Amount (AED)
+Amount (SAR)
+Amount Eligible for Commission
+Amount should not be less than zero
+An 80G Certificate {0} already exists for the donation {1}
+An amount of {0} already claimed for the component {1}, set the amount equal or greater than {2}
+An error has been appeared while reposting item valuation via {0}
+An error occurred while creating e-invoice for {}. Please check {} for more information.
+An error occurred while making e-invoicing request. Please check {} for more information.
+An unexpected error occurred while authorizing {}.
+Anonymization Matrix
+App ID
+App Logo
+Applicable Dimension
+Applicable Earnings Component
+Applicable From
+Applicable On Account
+Applicant 
+Applicant Rating
+Applicant-Wise Loan Security Exposure
+Applied on each reading.
+Apply Putaway Rule
+Apply Stash
+Apply Tax Withholding Amount 
+Apply To
+Apply User Permission On
+Appointment Scheduling Disabled
+Appointment Scheduling has been disabled for this site
+Appointment Type Service Item
+Appointment Type Service Items
+Appointment for service units with Inpatient Occupancy can only be created against the unit where patient has been admitted.
+Appointment was created. But no lead was found. Please check the email to confirm
+Arabic name missing for {} in the company document
+Are you sure want to delete the Post from Social Media platforms?
+Are you sure you want to reject the Employee Referral?
+As on Date
+As per IT Act, the rate of depreciation for the first depreciation entry is reduced by 50%.
+As you have E-Invoicing enabled, to be able to generate IRN for this invoice
+Asset Depreciation Details
+Asset Repair Consumed Item
+Assign Job to Employee
+Assign a user
+Assigning...
+Assignment Based On
+Assignment Condition
+Assignment Rule is not allowed on {0} document type
+Assignment based on
+Assignment of {0} removed by {1}
+Associated Document
+Associated Document Type
+At least one column is required to show in the grid.
+Attachment Limit Reached
+Attendance cannot be marked for {0} as it is a holiday.
+Attendance for employee {0} is already marked for the date {1}
+Attendance for the month of {0} , has already been marked for the Employee {1}
+Atualizar Todos os Boletos
+Authorization URI
+Authorization error for {}.
+Auto Fetch Serial Numbers
+Auto Insert Item Price If Missing
+Auto Repeat Day
+Auto Repeat Day {0} has been repeated.
+Auto Repeat Schedule
+Auto Reply
+Auto Write Off Amount 
+Auto creates Payment Entry for Donations created from web forms.
+Auto creates Payment Entry for Sales Invoices created for Membership from web forms.
+Automate Donation Payment Entries
+Automate Invoicing for Web Forms
+Automate Payment Entry Creation
+Automated Message
+Automatically Add Filtered Item To Cart
+Automatically Fetch Payment Terms from Order
+Automatically create an invoice when payment is authorized from a web form entry
+Available Leave
+Available Qty For Consumption
+Available Qty at Company
+Available on backorder
+Average Completion
+Average Rating
+Aviso
+Awesome Work
+Awesome, now try making an entry yourself
+B0
+B1
+B10
+B2
+B2B Invoices - 4A, 4B, 4C, 6B, 6C
+B2C(Large) Invoices - 5A, 5B
+B2C(Small) Invoices - 7
+B3
+B4
+B5
+B6
+B7
+B8
+B9
+BOM Level
+BOM UoM
+BOM is not specified for subcontracting item {0} at row {1}
+BOM recursion: {0} cannot be parent or child of {0}
+Back
+Backdated Leave Application is restricted. Please set the {} in {}
+Backups and Logs
+Balance Qty (Stock 
+Bank Reconciliation Tool
+Bank Statement Import
+Base Cost Per Unit
+Based On Date Of Joining
+Based On Value
+Based on your HR Policy, select your leave allocation period's end date
+Based on your HR Policy, select your leave allocation period's start date
+Basic Info
+Before Validate
+Before enabling <b>Create Transaction</b> or <b>Sandbox Mode</b>, you need to check the <b>Enable Tax Calculation</b> box
+Below is the list of upcoming holidays for you:
+Bench Management
+Bench Manager
+Bench Manager Command
+Bench Settings
+Bench Setup
+Bench Sites
+Bill Amount
+Bill for Rejected Quantity in Purchase Invoice
+Billed Hours (B)
+Billed Items To Be Received
+Billed, Received & Returned
+Billing Address Details
+Billing Interval in Subscription Plan must be Month to follow calendar months
+Billing and Payments
+Birthday Reminder 🎂
+Birthdays
+Boleto Bancario
+Boleto Bancário
+Boletos
+Boletos Emitidos
+Bom No
+Book Cost Center Wise Profit/Loss
+Booked reverse charge is not equal to applied tax amount
+Bottom Center
+Bottom Right
+Branch: {0}
+Brand Logo
+Bucket {0} not found.
+Bulk Actions
+Bulk E-Invoice Cancellation Complete
+Bulk E-Invoice Generation Complete
+Bulk Leave Policy Assignment
+Bundle Items
+Business Shortcode
+By default, emails are only sent for failed backups.
+By default, the Supplier Name is set as per the Supplier Name entered. If you want Suppliers to be named by a <a href='https://docs.erpnext.com/docs/user/manual/en/setting-up/settings/naming-series' target='_blank'>Naming Series</a> choose the 'Naming Series' option.
+C5E
+CGST + SGST value of the items is not equal to total CGST + SGST value. Please review taxes for any correction.
+CIP (Carriage and Insurance Paid to)
+CMD
+COGS By Item Group
+COGS Debit
+COLOR PICKER
+CPF / CNPJ
+CPT (Carriage Paid To)
+CRM Settings
+Calculate Gratuity Amount Based On
+Calculate Product Bundle Price based on Child Items' Rates
+Call Again
+Call Ended
+Call Handling Schedule
+Call Receiving Device
+Call Routing
+Call Schedule Row {0}: To time slot should always be ahead of From time slot.
+Callback
+Campaign Item
+Can Submit
+Can not close Work Order. Since {0} Job Cards are in Work In Progress state.
+Can not filter based on Child Account, if grouped by Account
+Can only list down the document types which has been linked to the User document type.
+Can't change the valuation method, as there are transactions against some items which do not have its own valuation method
+Cancel E-Way Bill
+Cancel IRN
+Cancel IRNs
+Cancel Not Allowed
+Cancellation of e-way bill is currently not supported.
+Cancelling E-Invoices...
+Cannot Fetch Values
+Cannot Merge
+Cannot apply TDS against multiple parties in one entry
+Cannot cancel
+Cannot cancel the transaction. Reposting of item valuation on submission is not completed yet.
+Cannot cancel {0} {1} as Serial No {2} does not belong to the company {3}
+Cannot cancel {0} {1} as Serial No {2} does not belong to the warehouse {3}
+Cannot cancel {0} {1} as Serial No {2} is active in warehouse {3}
+Cannot change Reference Document Type.
+Cannot change docstatus from 0 (Draft) to 2 (Cancelled)
+Cannot change docstatus from 1 (Submitted) to 0 (Draft)
+Cannot close loan as there is an outstanding of {0}
+Cannot convert Task to non-group because the following child Tasks exist: {0}.
+Cannot convert to Group because Account Type is selected.
+Cannot create Salary Slip for Employee joining after Payroll Period
+Cannot create Salary Slip for Employee who has left before Payroll Period
+Cannot edit Standard Dashboards
+Cannot edit Standard charts
+Cannot enable {0} for a non-submittable doctype
+Cannot find e-invoicing credentials for selected Company GSTIN. Please check E-Invoice Settings
+Cannot get file contents of a Folder
+Cannot mark Inpatient Record as Discharged since there are unbilled services. 
+Cannot mark attendance for an Inactive employee {0}
+Cannot receive from customer against negative outstanding
+Cannot retrieve Company GSTIN. Please select company address with valid GSTIN.
+Cannot retrieve link token for update. Check Error Log for more information
+Cannot retrieve link token. Check Error Log for more information
+Cannot share {0} with submit permission as the doctype {1} is not submittable
+Capacity (Stock UOM)
+Capacity in Stock UOM
+Capacity must be greater than 0
+Capitalize Repair Cost
+Card Break
+Carrier
+Carrier Service
+Category Details
+Cause of Grievance
+Certificate Recipient
+Change DATEV Settings
+Changed customer name to '{}' as '{}' already exists.
+Charge of type 'Actual' in row {0} cannot be included in Item Rate or Paid Amount
+Check this to mark the student as present in case the student is not attending the institute to participate or represent the institute in any event.||||||
+Checking this will round off the tax amount to the nearest integer
+Choose Kanban Board
+Choose a color
+Choose an icon
+Clear All
+Clear Values
+Cleared
+Click on Add to Holidays. This will populate the holidays table with all the dates that fall on the selected weekly off. Repeat the process for populating the dates for all your weekly holidays
+Click to add email / phone
+Client Id
+Client Script for {0} {1} already exists
+Cliente
+Closed Work Order can not be stopped or Re-opened
+Closure Date
+Code Challenge
+Code challenge method
+Collection Details:
+Column Width
+Column width cannot be zero.
+Comm10E
+Communication Channel
+Company Abbreviation cannot have more than 10 characters
+Company Address Display
+Company Address is mandatory to fetch company GSTIN details. Please set Company Address and try again.
+Company Billing Address
+Company Details
+Company Shipping Address
+Company Tax ID
+Company for which this tax template will be applicable
+Company is mandatory was generating invoice. Please set default company in Global Defaults
+Company which internal customer represents
+Company which internal customer represents.
+Company which internal supplier represents
+Company {} does not exist yet. Taxes setup aborted.
+Complete Job
+Complete Order
+Completed On
+Completed On cannot be greater than Today
+Completed Time
+Concluído
+Condition and Formula Help
+Configurar Plataforma Gerencianet
+Configuração da Plataforma Gerencianet
+Configurações
+Configure Columns
+Configure the action to stop the transaction or just warn if the same rate is not maintained.
+Connect to {}
+Connected App
+Connection Lost
+Connections
+Consider Entire Party Ledger Amount
+Considered In Paid Amount
+Consolidate Items
+Consumed Items Qty Check
+Consumed Quantity
+Consumers
+Continue Selection
+Continue Shopping
+Contract Template Help
+Control Historical Stock Transactions
+Convert Item Description to Clean HTML in Transactions
+Copy error to clipboard
+Copy to Clipboard
+Copy to clipboard
+Corrective Job Card
+Corrective Operation
+Corrective Operation Cost
+Cost Center For Item with Item Code {0} has been Changed to {1}
+Cost Per Unit
+Cost of Poor Quality Report
+Could not create Service Units
+Couldn't guess builder
+Country Code
+Coupons
+Course Start Date cannot be greater than Course End Date.
+Create <a href="{}">KSA VAT Setting</a> for this company
+Create Additional Salary
+Create Alias
+Create Depreciation Entry
+Create Interview
+Create Job Applicant
+Create Job Card based on Batch Size
+Create Ledger Entries for Change Amount
+Create Link
+Create New Customer
+Create New Kanban Board
+Create a new ...
+Creating Membership Invoice
+Creating Purchase Receipt ...
+Creating Stock Entry
+Creating {0} Service Units
+Credit/Debit Notes (Registered) - 9B
+Credit/Debit Notes (Unregistered) - 9B
+Currency of selected Income Tax Slab should be {0} instead of {1}
+Current Employer 
+Current Index
+Current Job Title
+Current Slab
+Current Work Experience
+Custom Document Types
+Custom Document Types (Select Permission)
+Custom Document Types Limit Exceeded
+Custom LDAP Directoy Selected, please ensure 'LDAP Group Member attribute' and 'LDAP Group Mappings' are entered
+Custom Script List
+Customer 
+Customer Address is mandatory to fetch customer GSTIN details. Please set Company Address and try again.
+Customer Defaults
+Customer Group Item
+Customer Item
+Customer Reviews
+Customer {0} has been created succesfully.
+Customer: 
+Customizations Discarded
+Customize Child Table
+Customize Dashboard
+Código da Cobranca
+Código de Barras
+DAP (Delivered At Place)
+DDP (Delivered Duty Paid)
+DELETE
+DLE
+DPU (Delivered At Place Unloaded)
+Dark
+Data Clipped
+Data de Pagamento
+Data de Vencimento
+Data de Vencimento do Boleto
+Data de vencimento inválida
+Date 
+Date Fieldname
+Date format could not be determined from the values in this column. Defaulting to yyyy-mm-dd.
+Date must be between {0} and {1}
+Date of Donation
+Date: 
+Dates {} and {} are not in the same fiscal year.
+Day(s)
+Deadlock Occurred
+Dear {0},
+Deduction from Salary
+Default Discount Account
+Default Donor Type
+Default Email Template
+Default In-Transit Warehouse
+Default Payment Discount Account
+Default Unit of Measure for Item {0} cannot be changed directly because you have already made some transaction(s) with another UOM. You need to either cancel the linked documents or create a new Item.
+Default tax templates for sales, purchase and items are created.
+Defaults Updated
+Deferred Revenue and Expense
+Deferred accounting failed for some invoices:
+Delayed Tasks Summary
+Delete Alias
+Delete Branch
+Delete Transactions
+Deletion Steps 
+Delivery to
+Deny
+Department: {0}
+Dependant SLE Voucher Detail No
+Dependent Task {0} is not a Template Task
+Deposit
+Depreciation Expense Account should be an Income or Expense Account.
+Depreciation Posting Date should not be equal to Available for Use Date.
+Description of Content
+Description to inform the user about any action that is going to be performed
+Designation: {0}
+Desk Theme
+Different 'Source Warehouse' and 'Target Warehouse' can be set for each row.
+Dimension Filter Help
+Dimension-wise Accounts Balance Report
+Directory Server
+Disable Feedback
+Disable Serial No And Batch Selector
+Disable System Update Notification
+Disabled Warehouse {0} cannot be used for this transaction.
+Disbursement
+Disbursement References
+Disbursement against loan:
+Discharge Datetime
+Discharge Ordered Datetime
+Discharge date cannot be less than Admission date
+Discount Account
+Discount Date
+Discount Settings
+Discount Validity
+Discount Validity Based On
+Discount of {} applied as per Payment Term
+Discounted Amount
+Discounts to be applied in sequential ranges like buy 1 get 1, buy 2 get 2, buy 3 get 3 and so on
+Discussion Reply
+Discussion Topic
+Dispatch Address
+Dispatch Address Name
+Distinct Item and Warehouse
+Distribute Manually
+Do Not Bill Patient Encounters for Inpatients
+Do not have permission to access bucket {0}.
+Do you really want to close this loan
+DocType Layout
+DocType Layout Field
+DocType must be a string
+DocTypes should not be added manually to the 'Excluded DocTypes' table. You are only allowed to remove entries from it.
+Document ID Too Long
+Document Linking
+Document Name must be a string
+Document Naming
+Document Type already used as a dimension
+Document Types (Select Permissions Only)
+Document Types and Permissions
+Document name should only contain alphanumeric values, dash(-) and slash(/) characters as per GST rules. Please change the naming series.
+Document not Relinked
+Documentation
+Domain (optional)
+Don't have an account?
+Donation
+Donation Details
+Donation Payment To
+Donation Settings
+Donation Webhook Secret
+Donations
+Dont Recompute tax
+Drag and drop files here or upload from
+Drop Site
+Drugs
+Duplicate Certificate
+Duration (ms)
+E Invoice Creation Failed
+E Invoice Request Failed
+E Invoice Request Log
+E Invoice Settings
+E Invoice User
+E Invoicing
+E-Invoice Summary
+E-Invoice cannot be cancelled after 24 hours of IRN generation.
+E-Invoices will be cancelled in a background process.
+E-Invoices will be generated in a background process.
+E-Invoicing
+E-Invoicing is disabled. Please enable it from {} to generate e-invoices.
+E-Way Bill Cancelled - {}
+E-Way Bill Generated
+E-Way Bill cannot be generated for Credit Notes & Debit Notes. Please clear fields in the Transporter Section of the invoice.
+E-mail
+E-mail inválido
+EXW (Ex Works)
+Each slot indicates the capacity currently available for booking
+Earned Leaves are leaves earned by an Employee after working with the company for a certain amount of time. Enabling this will allocate leaves on pro-rata basis by automatically updating Leave Allocation for leaves of this type at intervals set by 'Earned Leave Frequency.
+Earning Salary Component is required for Employee Referral Bonus.
+Earnings & Deductions
+Edit Capacity
+Edit Cart
+Editing {0} is not allowed as per POS Profile settings
+Effective From
+Effective To
+Either 'Selling' or 'Buying' must be selected
+Either key or IP flag is required.
+Email Digest Recipient
+Email Digest: {0}
+Email address of member {0} is missing
+Email or Phone/Mobile of the Contact are mandatory to continue.
+Email verification failed.
+Emissão por Fatura de Venda
+Emitir Boletos por Cliente
+Emitir Boletos por Faturas de Venda
+Employee Grievance
+Employee Naming By
+Employee Promotion cannot be submitted before Promotion Date
+Employee Referral {0} is not applicable for referral bonus.
+Employee Responsible 
+Employee Self Service
+Employee Transfer cannot be submitted before Transfer Date
+Employee can be named by Employee ID if you assign one, or via Naming Series. Select your preference here.
+Employee name
+Employee records are created using the selected option
+Employee {0} has already applied for {1} between {2} and {3} : {4}
+Employee {0} not found in Training Event Participants.
+Employee: {0} have to complete minimum {1} years for gratuity
+Employees will miss holiday reminders from {} until {}. <br> Do you want to proceed with this change?
+Enable Common Party Accounting
+Enable Discount Accounting
+Enabling this option will round off individual GST components in all the Invoices
+End date: {0}
+Ensure the user and group search paths are correct.
+Enter First and Last name of Employee, based on Which Full Name will be updated. IN transactions, it will be Full Name which will be fetched.
+Enter Visit Details
+Enter a name for this Holiday List.
+Enter the Standard Working Hours for a normal work day. These hours will be used in calculations of reports such as Employee Hours Utilization and Project Profitability analysis.
+Enter the number of leaves you want to allocate for the period.
+Error creating donation entry for {0}
+Error during caller information update
+Error in Client Script
+Error in Client Script.
+Error in input data. Please check for any special characters near following input: <br> {}
+Error updating halted status for member {0}
+Error while processing deferred accounting for Invoice {0}
+Error while processing deferred accounting for {0}
+Error while reposting item valuation
+Even invoices with apply tax withholding unchecked will be considered for checking cumulative threshold breach
+Event Frequency
+Event Update Log Consumer
+Everyone, let’s congratulate {0} on their birthday.
+Everyone, let’s congratulate {0} on their work anniversary!
+Exact Copies
+Example: ABCD.#####|||If series is set and Serial No is not mentioned in transactions, then automatic serial number will be created based on this series. If you always want to explicitly mention Serial Nos for this item. leave this blank.
+Exclude Holidays
+Excluded DocTypes
+Execution Order
+Executive
+Exempt Supplies
+Existing Sites
+Exotel
+Expected Average Rating
+Expected Balance Qty
+Expected End Date should be less than or equal to parent task's Expected End Date {0}.
+Expected Rating
+Expected Skill Set
+Expected Skillset
+Expected Stock Value
+Experimental
+Expired Leave
+Export Invoice - 6A
+Exporting...
+Extra Parameters
+FCA (Free Carrier)
+FG Qty from Transferred Raw Materials
+FG Value
+FREE
+Failed to get method for command {0} with {1}
+Failed to send the Interview Reschedule notification. Please configure your email account.
+Failure Description
+Fatura
+Faturas de Boletos por Fatura de Venda
+Faturas para Geracao dos Boletos
+Featured Items
+Feedback Reminder Notification Template
+Feedback already submitted for the Interview {0}. Please cancel the previous Interview Feedback {1} to continue.
+Feedback cannot be recorded for an absent Employee.
+Feedback limit
+Feedback limit per hour
+Feedback updated on {0}: {1}
+Feedback updated successfully!
+Fetch
+Fetch Timesheet
+Fetching Schedule...
+Fetching Treatment Plans
+Fetching exchange rates ...
+Field not permitted in query
+Fieldname '{0}' conflicting with a {1} of the name {2} in {3}
+Fieldtype cannot be changed from {0} to {1}
+Filter Fields Row #{0}: Fieldname <b>{1}</b> must be of type 'Link' or 'Table MultiSelect'
+Filtered By
+Financial Year Begins On
+Find '{0}' in ...
+Finished Item {0} does not match with Work Order {1}
+First 2 digits of GSTIN should match with State number {0}.
+First Day of the Week
+First Name 
+Fixed Asset Defaults
+Folio
+Follow these steps to create a landing page for your store
+Following Report Filters have missing values:
+Footer Content
+For Designation 
+For Job Card
+For Links, enter the DocType as range.|||For Select, enter list of Options, each on a new line.
+For Operation
+For a day of leave taken, if you still pay (say) 50% of the daily salary, then enter 0.50 in this field.
+For multiple addresses, enter the address on different line. e.g. test@test.com ⏎ test1@test.com
+Form
+Form Dict
+Form Tour
+Form Tour Step
+Formula Based Criteria
+Fraction of Applicable Earnings 
+Fraction of Daily Salary per Leave
+Fractional Cost
+Frappe Apps
+Frappe Light
+Freeze accounting transactions up to specified date, nobody can make/modify entry except the specified Role.
+From Corrective Job Card
+From Date & To Date is mandatory for generating E-Invoice Summary Report
+From Date and To Date are mandatory
+From Date must come before To Date
+From Delivery Date
+From Opportunity
+From Order Id
+From Payment Date
+From here, you can enable encashment for the balance leaves.
+From(Year)
+Fuel Expenses
+GL Balance
+GROUP_CONCAT
+GST Tax Settings
+GST category should be one of {}, {}, {}, {}
+GSTIN is mandatory to fetch company GSTIN details. Please enter GSTIN in selected company address.
+GSTIN is mandatory to fetch customer GSTIN details. Please enter GSTIN in selected customer address.
+Generate E-Way Bill
+Generate IRN
+Generate IRNs
+Generating E-Invoices...
+Gerencianet
+Get App
+Get Applicable Treatment Plans
+Get Customer Group Details
+Get Finished Goods for Manufacture
+Get Memberships
+Get OpenID Configuration
+Get Stock
+Get Sub Assembly Items
+Get Supplier Group Details
+Get Timesheets
+Git Init
+Go make some noise
+Go to Cart
+Go to Notification Settings List
+Go to Quote
+Goods
+Google Drive Picker
+Google Drive Picker Enabled
+Grant Commission
+Graph
+Gratuity
+Gratuity Applicable Component
+Gratuity Rule
+Gratuity Rule Slab
+Gratuity Rules
+Greeting Message
+Grid Shortcuts
+Grievance Against
+Grievance Against Party
+Grievance Details
+Grievance Type
+Gross Pay (Company Currency)
+Gross Purchase Amount should be <b>equal</b> to purchase amount of one single Asset.
+Gross Year To Date
+Gross Year To Date(Company Currency)
+Group By {0}
+Group Duplicate Queries
+Group Object Class
+Group Same Items
+Halted
+Have Default Naming Series for Batch ID?
+Healthcare Service
+Height (cm)
+Help: To link to another record in the system, use "/app/note/[Note Name]" as the Link URL. (don't use "http://")
+Helvetica Neue
+Here are the options to proceed:
+Here is your webhook secret for {0} API, this will be shown to you only once.
+Here, you can select a senior of this Employee. Based on this, Organization Chart will be populated.
+Here, your weekly offs are pre-populated based on the previous selections. You can add more rows to also add public and national holidays individually.
+Hey {}! This email is to remind you about the upcoming holidays.
+Hi,
+Hide Descendants
+Hide Failed Jobs
+Hide Images
+Hide Saved
+Hide Tags
+Hide descendant records of <b>For Value</b>.
+Holidays this Month.
+Holidays this Week.
+Hour Rate (Company Currency)
+How would you rate the blog?
+IGST value of all items is not equal to total IGST value. Please review taxes for any correction.
+IRN Cancelled - {}
+IRN Generated
+IRN No.
+IRN generation is not allowed for invoices dated before 1st Jan 2021
+IRN not found. You must generate IRN before cancelling.
+ITC Available (whether in full or part)
+Identification Number (UID)
+If checked, Rejected Quantity will be included while making Purchase Invoice from Purchase Receipt.
+If checked, a customer will be created, mapped to Patient.|||Patient Invoices will be created against this Customer. You can also select existing Customer while creating Patient.
+If checked, leave will be granted on the day of joining every month.
+If checked, negative numeric values of Currency, Quantity or Count would be shown as positive
+If checked, system will unlink the payment against the respective invoice.
+If checked, the tax amount will be considered as already included in the Paid Amount in Payment Entry
+If enabled, additional ledger entries will be made for discounts in a separate Discount Account
+If enabled, ledger entries will be posted for change amount in POS transactions
+If mentioned, the system will allow only the users with this Role to create or modify any stock transaction earlier than the latest stock transaction for a specific item and warehouse. If set as blank, it allows all users to create/edit back-dated transactions.
+If not, you can Cancel / Submit this entry
+If rate is zero them item will be treated as "Free Item"
+If source warehouse selected then system will create the material request with type Material Transfer from Source to Target warehouse. If not selected then will create the material request with type Purchase for the target warehouse.
+If the condition is satisfied user will be rewarded with the points. eg. doc.status == 'Closed'|||
+If this is undesirable please cancel the corresponding Payment Entry.
+If you need to reconcile particular transactions against each other, then please select accordingly. If not, all the transactions will be allocated in FIFO order.
+If you still want to proceed, please enable {0}.
+Ignore Default Payment Terms Template
+Ignore Empty Stock
+Illegal template
+Image link '{0}' is not valid
+Important Notice
+In House
+In Minutes
+In mins
+In row {0} of Appointment Booking Slots: "To Time" must be later than "From Time".
+Include Safety Stock in Required Qty Calculation
+Incoming (POP/IMAP) Settings
+Incoming Call Handling Schedule
+Incoming Call Settings
+Incoming Rate (Costing)
+Incorrect Balance Qty After Transaction
+Incorrect Batch Consumed
+Incorrect Invoice
+Incorrect Payment Type
+Incorrect Serial No Valuation
+Incorrect Serial Number Consumed
+Incorrect Stock Value Report
+Incoterm
+Increase In Asset Life(Months)
+Indent
+Informações da Plataforma Emissora
+Informações do Boleto
+Informações do Cliente
+Inpatient Settings
+Inspection Rejected
+Inspection Submission
+Install
+Install App
+Insufficient Capacity
+Inter
+Inter State tax category for GST State {0} already exists
+Interest %
+Interest Outstanding
+Interest accrued from {0} to {1} against loan: {2}
+Internal Customer for company {0} already exists
+Internal Sale or Delivery Reference missing.
+Internal Sales Reference Missing
+Internal Supplier for company {0} already exists
+Internal transfers can only be done in company's default currency
+Interview
+Interview Detail
+Interview Feedback
+Interview Feedback Reminder
+Interview Feedback {0} submitted successfully
+Interview Reminder
+Interview Reminder Notification Template
+Interview Rescheduled successfully
+Interview Round
+Interview Round {0} is only applicable for the Designation {1}
+Interview Round {0} is only for Designation {1}. Job Applicant has applied for the role {2}
+Interview Summary
+Interview Type
+Interview overlaps with {0}
+Interview: {0} Rescheduled
+Interviewer
+Interviewers
+Intra State tax category for GST State {0} already exists
+Intro
+Intro Video URL
+Introspection URI
+Invalid Action
+Invalid Checkout Request ID
+Invalid Conversation ID
+Invalid Cost Center
+Invalid Document
+Invalid Fieldname
+Invalid Fields
+Invalid File URL
+Invalid Filter
+Invalid Formula
+Invalid GSTIN
+Invalid Healthcare Service Unit
+Invalid Item Defaults
+Invalid Number of Service Units
+Invalid PAN No. The input you've entered doesn't match the format of PAN.
+Invalid Parameters.
+Invalid Payroll Payable Account. The account currency must be {0} or {1}
+Invalid Primary Role
+Invalid Priority
+Invalid State
+Invalid Supply Type
+Invalid Table Fieldname
+Invalid Warehouse
+Invalid aggregate function
+Invalid docstatus
+Invalid key type
+Invalid request method: {}
+Invalid state.
+Invalid value {0} for {1} against account {2}
+Invalid {0}! The check digit validation has failed. Please ensure you've typed the {0} correctly.
+Investigated
+Investigation Details
+Invoice ID
+Invoice Limit
+Invoice Portion (%)
+Invoiced Amount (Excl. Tax)
+Invoiced Qty
+Is Applicable for Referral Bonus
+Is Corrective Job Card
+Is Corrective Operation
+Is Custom
+Is Debit Note
+Is Finished Item
+Is Partially Paid Leave
+Is Process Loss
+Is Query Report
+Is Recurring Additional Salary
+Is Recursive
+Is Reverse Charge Account
+Is Scrap Item
+Is Short Year
+Is Template
+Is Time-Bound
+Is Virtual
+Is this Default?
+Issue Analytics
+Issue Summary
+It can take upto few hours for accurate stock values to be visible after merging items.
+Item Code is required
+Item Code, warehouse and quantity are required on row {0}
+Item Price Settings
+Item Price appears multiple times based on Price List, Supplier/Customer, Currency, Item, Batch, UOM, Qty, and Dates.
+Item Reference
+Item and Warehouse
+Item valuation reposting in progress. Report might show incorrect item valuation.
+Item {0} entered multiple times.
+Item {0} not found.
+Item {} does not exist.
+Item: {0} with Stock UOM: {1} cannot be a Scrap/Loss Item as {1} is a whole UOM.
+Items to Be Repost
+Jane Doe
+Job Applicant {0} created successfully.
+Job Applicants are not allowed to appear twice for the same Interview round. Interview {0} already scheduled for Job Applicant {1}
+Job Application Route
+Job Card Operation
+Job Card Scrap Item
+Job Openings for designation {0} already open or hiring completed as per Staffing Plan {1}
+Joined {0}
+KSA VAT
+KSA VAT Purchase Account
+KSA VAT Purchase Accounts
+KSA VAT Sales Account
+KSA VAT Sales Accounts
+KSA VAT Setting
+Kindly cancel the Manufacturing Entries first against the work order {0}.
+LDAP Auth
+LDAP Custom Settings
+LDAP Group Member attribute
+LDAP Search String must be enclosed in '()' and needs to contian the user placeholder {0}, eg sAMAccountName={0}
+LDAP Search and Paths
+LDAP Server Settings
+LDAP search path for Groups
+LDAP search path for Users
+LDAP settings incorrect. validation response was: {0}
+Last Accrual Date
+Last Name, Email or Phone/Mobile of the user are mandatory to continue.
+Last Odometer Value 
+Last Order Id
+Last sync was {0}.
+Latest Price
+Leave <b>From</b> and <b>To</b> 0 for no upper and lower limit.
+Leave Allocated
+Leave Details
+Leave Expired
+Leave Policy Assignment
+Leave Policy: {0} already assigned for Employee {1} for period {2} to {3}
+Leave Taken
+Leave Type can be either without pay or partial pay
+Leave allocation {0} is linked with the Leave Application {1}
+Leave already have been assigned for this Leave Policy Assignment
+Leave and Expense Claim Settings
+Leave blank for home.|||This is relative to site URL, for example "about" will redirect to "https://yoursitename.com/about"
+Leaves you can avail against a holiday you worked on. You can claim Compensatory Off Leave using Compensatory Leave request. Click
+Left Bottom
+Left Center
+Legend
+Length (cm)
+Less than 12 months.
+Let us continue with the onboarding
+Letter Head cannot be both disabled and default
+Level (BOM)
+Library
+Light
+Limit timeslot for Stock Reposting
+Limits don't apply on
+Link Details
+Link Type
+Link a new bank account
+Link do Boleto
+Link do Boleto em PDF
+Link for About Us Page is "/about".
+Link that is the website home page. Standard Links (home, login, products, blog, about, contact)
+Link with Customer
+Link with Supplier
+LinkedIn Error - Access Denied
+LinkedIn Error - Unauthorized
+Linking Failed
+Linking to Customer Failed. Please try again.
+Linking to Supplier Failed. Please try again.
+Lists
+Load more
+Loading user profile
+Loan Interest Report
+Loan Security Exposure
+Loan Security Unpledge Error
+Loan Security Value after unpledge is {0}
+Loan To Security Value ratio must always be {0}
+Loan To Value ratio breach
+Loan Write Off
+Loan Write Off will be automatically created on loan closure request if pending amount is below this limit
+Loan cannot be repayed from salary for Employee {0} because salary is processed in currency {1}
+Log In
+Login Failed please try again
+Login Page
+Login With Email
+Login With {0}
+Login to {0}
+Looks like you haven’t received any notifications.
+Loss Qty
+Loss Value
+Lower Range
+Maintain Asset
+Maintenance Details
+Make Material Request for Warehouse
+Make Serial No / Batch from Work Order
+Make {0} Variant
+Make {0} Variants
+Manage
+Manual Inspection
+Manufacturing Type
+Map Shopify Taxes / Shipping Charges to ERPNext Account
+Mark all as read
+Mark as Completed
+Mark attendance as {0} for {1} on selected dates?
+Material Requirement Planning
+Materials are already received against the purchase order {0}
+Materials needs to be transferred to the work in progress warehouse for the job card {0}
+Maximum Attachment Limit of {0} has been reached for {1} {2}.
+Maximum Capacity:
+Maximum Consecutive Leaves Allowed
+Maximum Leave Allocation Allowed
+Maximum Net Rate
+Maximum Payment Amount
+Maximum Value
+Maximum attachment limit of {0} has been reached.
+Maximum length of document number should be 16 characters as per GST rules. Please change the naming series.
+Maximum points allowed after multiplying points with the multiplier value|||(Note: For no limit leave this field empty or set 0)
+Medical history
+Member with Razorpay Subscription ID {0} not found
+Membership Invoicing
+Membership Payment To
+Membership Webhook Secret
+Memberships
+Merge Invoices Based On
+Mid Center
+Migrate
+Minimum Net Rate
+Minimum Payment Amount
+Minimum Value
+Minimum Year for Gratuity
+Misconfigured
+Mismatch
+Missing
+Missing Address Fields
+Missing Asset
+Missing Cost Center
+Missing Currency
+Missing Filters Required
+Missing Finished Good
+Missing Formula
+Missing IRN
+Missing Items
+Missing Required Fields
+Missing Value
+Missing Warehouse
+Missing required details, did not create schedule discharge
+Module HTML
+Module Profile
+Module Profile Name
+Month To Date
+Month To Date(Company Currency)
+Month(s)
+Monthly Rank
+More columns found than expected. Please compare the uploaded file with standard template
+More info
+Most probably your password is too long.
+Move cursor to above row
+Move cursor to below row
+Move cursor to next column
+Move cursor to previous column
+Move to Cart
+Multiple Additional Salaries with overwrite property exist for Salary Component {0} between {1} and {2}.
+Multiple Loyalty Programs found for Customer {}. Please select manually.
+Multiple items cannot be marked as finished item
+Must be a publicly accessible Google Sheets URL and adding Bank Account column is necessary for importing via Google Sheets
+Must be enclosed in '()' and include '{0}', which is a placeholder for the user/login name. i.e. (&(objectclass=user)(uid={0}))
+My Device
+NIL RATED/EXEMPTED Invoices
+NOTE: This box is due for depreciation. Please re-setup LDAP to work with the newer settings
+NPO-80G-.YYYY.-
+NPO-DTN-.YYYY.-
+Name already taken, please set a new name
+Name error
+Naming Options:|||<ol><li><b>field:[fieldname]</b> - By Field</li><li><b>naming_series:</b> - By Naming Series (field called naming_series must be present</li><li><b>Prompt</b> - Prompt user for a name</li><li><b>[series]</b> - Series by prefix (separated by a dot); for example PRE.#####</li>|||<li><b>format:EXAMPLE-{MM}morewords{fieldname1}-{fieldname2}-{#####}</b> - Replace all braced words (fieldnames, date words (DD, MM, YY), series) with their value. Outside braces, any characters can be used.</li></ol>
+Navigation Settings
+Net Pay (Company Currency)
+Net Pay Info
+Net Total (
+Network Printer Settings
+New Branch
+New Counter
+New Feedback on {0}: {1}
+New Service Unit Name
+New Site
+New Site Name
+Next Document
+Next Step Condition
+Next follow up date should be greater than now.
+Nexus
+Nexus List
+No Answer
+No Applicable Component is present in last month salary slip
+No Applicable Earnings Component found for Gratuity Rule: {0}
+No Customers found with selected options.
+No Data to Show
+No Drug Shortage
+No Invoice Selected
+No Items Found
+No Items selected yet. Browse and click on items below to publish.
+No Letterhead
+No Membership Payments found against the Member {0}
+No New notifications
+No Outstanding Invoices found for this party
+No POS Profile found. Please create a New POS Profile first
+No Records for these settings.
+No Requests found
+No Results found
+No Reviews
+No Salary Slip is found for Employee: {0}
+No Stock Available Currently
+No Suitable Slab found for Calculation of gratuity amount in Gratuity Rule: {0}
+No Summary
+No Tasks
+No Tax Withholding data found for the current posting date.
+No Timesheets
+No Unreconciled Invoices and Payments found for this party and account
+No Unreconciled Payments found for this party
+No activities to show
+No additional fields available
+No attendance has been marked for {0} as it is a Holiday
+No attendance record found
+No billing email found for customer: {0}
+No customer linked to member {0}
+No data found. Seems like you uploaded a blank file
+No employee was scheduled for call popup
+No employees found
+No employees found for the mentioned criteria:<br>Company: {0}<br> Currency: {1}<br>Payroll Payable Account: {2}
+No featured items yet. Got to your {0} and feature up to eight items that you want to highlight to your customers.
+No filters selected
+No items in cart
+No items in this category yet.
+No more records..
+No primary email found for customer: {0}
+No records found in Allocation table
+No records found in the Invoices table
+No records found in the Payments table
+No stock transactions can be created or modified before this date.
+No {0} Found
+No.
+Non Profit Settings
+Non-Billed Hours (NB)
+Not a valid view:
+Not allowed to create custom Virtual DocType.
+Not allowed, cannot overlap appointment {}
+Not allowed, {} cannot exceed maximum capacity {}
+Note: On checking Is Mandatory the accounting dimension will become mandatory against that specific account for all accounting transactions
+Note: To merge the items, create a separate Stock Reconciliation for the old item {0}
+Note: Total allocated leaves {0} shouldn't be less than already approved leaves {1} for the period
+Notification sent to
+Number of Docs
+Number of Queries
+Number of Service Units
+Number of Service Units to be created should at least be 1
+Numeric
+Numeric Inspection
+Número da Parcela
+Número de Parcelas
+Número de telefone inválido
+Número do documento inválido
+OAuth Scope
+OK
+OTP Secret Reset - {0}
+Obtained Average Rating
+Occupational hazards
+Odometer Value
+On Paid Amount
+On a new site
+On checking this Order from the 
+Onboard
+Once the Work Order is Closed. It can't be resumed.
+Only CSV and Excel files can be used to for importing data. Please check the file format you are trying to upload
+Only Deduct Tax On Excess Amount 
+Only Employee Grievance with status {0} or {1} can be submitted
+Only Interviewer Are allowed to submit Interview Feedback
+Only Interviews with Cleared or Rejected status can be submitted.
+Only for
+Only items with an image and description can be published. Please update them if an item in your inventory does not appear.
+Open Call Log
+Open Communication
+Open Sales Orders
+OpenID Configuration
+OpenLDAP
+Operation Section
+Optional Leaves are holidays that Employees can choose to avail from a list of holidays published by the company.
+Optional, if you want to manage stock separately for this Service Unit
+Order Group
+Order Status
+Organizational Chart
+Other risk factors
+Out of stock
+Outgoing (SMTP) Settings
+Over Receipt
+Over Receipt/Delivery
+Over Transfer Allowance
+Overbilling
+Overbilling of {} ignored because you have {} role.
+Overlap
+Overview
+PDF Page Height (in mm)
+PDF Page Width (in mm)
+PDF printing via "Raw Print" is not supported.
+POS Closing Failed
+POS Closing failed while running in a background process. You can resolve the {0} and retry the process again.
+POS Invoices will be consolidated in a background process
+POS Invoices will be unconsolidated in a background process
+POS Search Fields
+POST
+PRLE-.####
+PROJ-.####
+PUT
+Packed Items cannot be transferred internally
+Page Height (in mm)
+Page Size
+Page Title
+Page Width (in mm)
+Page height and width cannot be zero
+Page to show on the website|||
+Paid Amount After Tax
+Paid Amount After Tax (Company Currency)
+Paid From Account Type
+Paid To Account Type
+Pallets
+Parameter Group
+Parameter Group Name
+Parcel Template
+Parcel Template Name
+Parcel weight cannot be 0
+Parcels
+Parent Account Missing
+Parent DocType
+Parent Document Type
+Parent Missing
+Parent Task {0} is not a Template Task
+Parent document type is required to create a dashboard chart
+Partial
+Partly Paid
+Partly Paid and Discounted
+Party Link
+Party Specific Item
+Party Type and Party is required for Receivable / Payable account {0}
+Party can only be one of {0}
+Password missing in Email Account
+Password set
+Past Orders
+Past Quotes
+Patient Age From
+Patient Age From cannot be less than 0
+Patient Age To
+Patient Age To cannot be less than 0
+Patient Age To cannot be less than Patient Age From
+Patient History Custom Document Type
+Patient History Settings
+Patient History Standard Document Type
+Patient Medical Record can only be created for submittable document types.
+Patient {0} is not admitted in the service unit {1}
+Pause Job
+Pay via Salary Slip
+Payment Amount (Company Currency)
+Payment Configuration
+Payment Gateway Account not set
+Payment Limit
+Payment Reconciliation Allocation
+Payment Request took too long to respond. Please try requesting for payment again.
+Payment Schedule Table
+Payment Summary
+Payment Unlink Error
+Payment of {0} received successfully.
+Payment of {0} received successfully. Waiting for other requests to complete...
+Payment request failed
+Payment term {0} not used in {1}
+Payroll Payable Account
+Penalty Interest %
+Penalty against loan:
+Pending Leave
+Pending principal amount is {0}
+Per Received
+Period Closing Settings
+Period Details
+Permission Query
+Permissions Error
+Personal Data Deletion Step
+Pessoa Física
+Pessoa Jurídica
+Pick Batch No
+Pickup
+Pickup Contact Person
+Pickup Date
+Pickup Date cannot be before this day
+Pickup From
+Pickup To time should be greater than Pickup From time
+Pickup Type
+Pickup from
+Pickup to
+Plaid Link Error
+Plaid Link Failed
+Plaid Link Refresh Required
+Plaid Link Updated
+Plan Conditions
+Plan Details
+Plan Items
+Plan to Request Qty
+Plataforma Emissora
+Please Enable Auto Attendance and complete the setup first.
+Please Enable Server Scripts
+Please Select Company First
+Please account for ammended documents too.
+Please add Root Account for - {0}
+Please add a valid feedback.
+Please add the Bank Account column
+Please add the remaining benefits {0} to the application as pro-rata component
+Please adjust the qty or edit {0} to proceed.
+Please cancel and amend the Payment Entry
+Please cancel payment entry manually first
+Please check Enable Razorpay for Memberships in {0} to setup subscription
+Please check OpenID Configuration URL
+Please check Process Deferred Accounting {0} and submit manually after resolving errors.
+Please check the error message and take necessary actions to fix the error and then restart the reposting again.
+Please check your email to confirm the appointment
+Please clear the
+Please configure Clinical Procedure Consumable Item in {0}
+Please contact any of the following users to {} this transaction.
+Please contact your administrator to extend the credit limits for {0}.
+Please create Landed Cost Vouchers against Invoices that have 'Update Stock' enabled.
+Please create a new Accounting Dimension if required.
+Please create an adjustment Journal Entry for amount {0} on {1}
+Please create purchase from internal sale or delivery document itself
+Please delete the Employee {0} to cancel this document
+Please do not book expense of multiple assets against one single Asset.
+Please enable {} in {} to allow same item in multiple rows
+Please ensure {} account is a Balance Sheet account.
+Please ensure {} account is a Receivable account.
+Please enter GST state
+Please enter OpenID Configuration URL
+Please enter Root Type for account- {0}
+Please enter Shipment Parcel information
+Please enter Stock Items consumed during the Repair.
+Please enter Warehouse from which Stock Items consumed during the Repair were taken.
+Please enter a valid State in the {0} Address
+Please enter a valid email address.
+Please enter both your email and message so that we can get back to you. Thanks!
+Please enter mobile number first.
+Please enter the password for: <b>{0}</b>
+Please enter your new password.
+Please enter your old password.
+Please first set Last Name, Email and Phone for the user
+Please fix overlapping time slots for {0}
+Please fix overlapping time slots for {0}.
+Please import accounts against parent company or enable {} in company master.
+Please make sure the file you are using has 'Parent Account' column present in the header.
+Please mention 'Weight UOM' along with Weight.
+Please rectify and try again.
+Please refer {gst_document_link} to learn more about how to setup and create reverse charge invoice
+Please refresh or reset the Plaid linking of the Bank {}.
+Please save the document to generate IRN.
+Please select Applicant
+Please select Unrealized Profit / Loss account or add default Unrealized Profit / Loss account account for company {0}
+Please select X and Y fields
+Please select a Member
+Please select a Member first.
+Please select a Program first.
+Please select a Work Order first.
+Please select a company first.
+Please select a date
+Please select a date and time
+Please select a date.
+Please select at least one sales invoice to generate IRN
+Please select donor first
+Please select employee first
+Please select the LDAP Directory being used
+Please set "Default Payroll Payable Account" in Company Defaults
+Please set Earning Component for Leave type: {0}.
+Please set Email/Phone for the contact
+Please set Fixed Asset Account in {} against {}.
+Please set Relieving Date for employee: {0}
+Please set VAT Accounts in {0}
+Please set Vat Accounts for Company: "{0}" in UAE VAT Settings
+Please set a Default Cash Account in Company defaults
+Please set a Linked Item for the Membership Type {0}
+Please set a default Holiday List for Company {0}
+Please set a valid Service Unit Capacity to enable Overlapping Appointments
+Please set account in Salary Component {0}
+Please set an Expense Account in the Items table
+Please set default Exchange Gain/Loss Account in Company {}
+Please set one of the following:
+Please set the cost center field in {0} or setup a default Cost Center for the Company.
+Please set the {0} for company {1}
+Please set valid GSTIN No. in Company Address {} for company {}
+Please set {0} for the Employee: {1}
+Please set {0}.
+Please specify a {0}
+Please update Repair Status.
+Please update rating or feedback before saving.
+Please use a valid LDAP search filter
+Pledged Applicant Count
+Popular Items
+Post Metrics
+Post Now
+Posting date
+Practitioner
+Practitioner Schedule:
+Practitioner {0} does not have a Practitioner Schedule assigned.
+Practitioner {0} does not have a Service Unit set against the Practitioner Schedule {1}.
+Practitioners
+Press Cmd+Enter to post your comment
+Previous Document
+Price Valid Upto
+Primary Party
+Primary Role
+Principal Outstanding
+Printer mapping not set.
+Priority cannot be lesser than 1.
+Proceed
+Process Loss Qty
+Process Loss Report
+Product Engine Error
+Product Price ID
+Product Tax Category
+Product Tax Code
+Production Plan Item Reference
+Production Plan Sub Assembly Item
+Production Plan Sub-assembly Item
+Production Plan Summary
+Profit
+Project Profitability
+Properties and References
+Publish Salary Range
+Publish in Website
+Published in Website
+Publishing Item ...
+Pull & Rebase
+Purchase Orders {0} are un-linked
+Purchases
+Putaway Rule
+Putaway Rule already exists for Item {0} in Warehouse {1}.
+Qty As Per BOM
+Qty To Produce
+Qty in Stock UOM
+Qty of Finished Goods Item should be greater than 0.
+Qty to Be Consumed
+Quality Inspection Parameter
+Quality Inspection Parameter Group
+Quality Inspection Settings
+Quality Inspection(s)
+Quantity not available for the following items in warehouse {0}. 
+Queries
+Query Parameters
+Quotation Number
+Rank
+Rate Of Interest
+Rate of Stock UOM
+Rating is required!
+Ratings
+Raw Material Value
+Raw Printing Setting
+Raw Printing Settings
+RazorPay Payment ID
+RazorPay Settings for Memberships
+Razorpay Payment ID
+Read {0} for more information on E Invoicing features.
+Reading Value
+Rebuild Tree
+Rebuilding of tree is not supported for {}
+Recalculate Incoming/Outgoing Rate
+Received Amount After Tax
+Received Amount After Tax (Company Currency)
+Received Amount cannot be greater than Paid Amount
+Received Qty in Stock UOM
+Received an invalid token type.
+Recent
+Recent Orders
+Recents
+Reconcile the Bank Transaction
+Recorder is Inactive.
+Recording HTML
+Redirect URI
+Reference Detail
+Reference Exchange Rate
+Reference Invoice
+Reference number of the invoice from the previous system
+Referral Bonus Payment Status
+Referrer Details
+Referrer Name
+Refresh Plaid Link
+Region Code
+Rehab and Physiotherapy
+Reinstall
+Reject Employee Referral
+Reminders
+Remove Failed Jobs
+Removed page customizations
+Repair Asset
+Repair Details
+Repair and Maintenance Account
+Repay Unclaimed Amount from Salary
+Repayment
+Repayment against Loan: 
+Repeat on Days
+Replace a particular BOM in all other BOMs where it is used. It will replace the old BOM link, update cost and regenerate "BOM Explosion Item" table as per new BOM.|||It also updates latest price in all the BOMs.
+Report an Issue
+Report initiated, click to view status
+Reports To
+Repost Item Valuation
+Reposting Completed {0}%
+Reposting Progress
+Request Headers
+Request Loan Closure
+Request Method
+Request Timeout
+Request for Quote
+Requires any valid fdn path. i.e. ou=groups,dc=example,dc=com
+Requires any valid fdn path. i.e. ou=users,dc=example,dc=com
+Reschedule Interview
+Reserved for POS Transactions
+Reserved for Production
+Reserved for Sub Contracting
+Reset Customizations
+Reset Dashboard Customizations
+Reset Plaid Link
+Reset to default
+Respiratory/Pulse Rate
+Response 
+Rest of the day
+Restart
+Restore Asset
+Restrict
+Restrict Backdated Leave Application
+Restrict Items Based On
+Resume Job
+Resume Link
+Resume link
+Retirement Age (In Years)
+Return Against
+Return Issued
+Return of Components
+Returned
+Returned Qty in Stock UOM
+Revenue
+Reversal Of
+Review Submitted
+Review various other settings related to Employee Leaves and Expense Claim
+Revocation URI
+Revoke Key
+Right Bottom
+Right Center
+Role Allowed to Create/Edit Back-dated Transactions
+Role Allowed to Over Bill 
+Role Allowed to Over Deliver/Receive
+Role Allowed to Override Stop Action
+Role has been set as per the user type {0}
+Root Type for {0} must be one of the Asset, Liability, Income, Expense and Equity
+Round Name
+Round Off GST Values
+Round Off Tax Amount
+Round off Work Experience
+Route to the custom Job Application Webform
+Row # {0}:
+Row # {0}: Non administrator user can not set the role {1} to the custom doctype
+Row #{0}: Acceptance Criteria Formula is incorrect.
+Row #{0}: Acceptance Criteria Formula is required.
+Row #{0}: Cannot allocate more than {1} against payment term {2}
+Row #{0}: Could not find field {1} in {2} DocType
+Row #{0}: Cumulative threshold cannot be less than Single Transaction threshold
+Row #{0}: Dates overlapping with other row
+Row #{0}: Document Type {1} is not submittable.
+Row #{0}: Expense Account not set for the Item {1}. {2}
+Row #{0}: Field {1} in Document Type {2} is not a Date / Datetime field.
+Row #{0}: For {1}, you can select reference document only if account gets credited
+Row #{0}: For {1}, you can select reference document only if account gets debited
+Row #{0}: From Date cannot be before To Date
+Row #{0}: Maximum Net Rate cannot be greater than Minimum Net Rate
+Row #{0}: No such Field named {1} found in the Document Type {2}.
+Row #{0}: Parent DocType is mandatory for internal links
+Row #{0}: Rate must be same as {1}: {2} ({3} / {4})
+Row #{0}: Received Qty must be equal to Accepted + Rejected Qty for Item {1}
+Row #{0}: Reference Document Type must be Donation
+Row #{0}: Result for Secondary UOM not calculated
+Row #{0}: Table Fieldname is mandatory for internal links
+Row #{0}: The following Serial Nos are not present in Delivery Note {1}:
+Row #{0}: {1} Serial numbers required for Item {2}. You have provided {3}.
+Row #{0}: {1} does not have any available serial numbers in {2}
+Row #{0}: {1} is not a valid reading field. Please refer to the field description.
+Row #{}: Batch No. {} of item {} has less than required stock available, {} more required
+Row #{}: Batch No. {} of item {} has no stock available. Please select valid batch no.
+Row #{}: GST rate is invalid. Please remove tax rows with zero tax amount from taxes table.
+Row #{}: Item {} is a non stock item. You can only include stock items in a POS Invoice.
+Row #{}: Original Invoice {} of return invoice {} is {}.
+Row #{}: Serial No. {} has already been transacted into another Sales Invoice. Please select valid serial no.
+Row #{}: Serial Nos. {} have already been transacted into another POS Invoice. Please select valid serial no.
+Row #{}: {} {} doesn't belong to Company {}. Please select valid {}.
+Row {0}# Paid Amount cannot be greater than Total amount
+Row {0}: Account {1} does not belong to Company {2}
+Row {0}: Allocated amount {1} must be less than or equal to invoice outstanding amount {2}
+Row {0}: Allocated amount {1} must be less than or equal to remaining payment amount {2}
+Row {0}: Both Debit and Credit values cannot be zero
+Row {0}: Cost Center {1} does not belong to Company {2}
+Row {0}: Expense Head changed to {1} as no Purchase Receipt is created against Item {2}.
+Row {0}: Expense Head changed to {1} because account {2} is not linked to warehouse {3} or it is not the default inventory account
+Row {0}: Expense Head changed to {1} because expense is booked against this account in Purchase Receipt {2}
+Row {0}: From (Year) can not be greater than To (Year)
+Row {0}: From Warehouse is mandatory for internal transfers
+Row {0}: Item Tax template updated as per validity and rate applied
+Row {0}: Item rate has been updated as per valuation rate since its an internal stock transfer
+Row {0}: Paid amount {1} is greater than pending accrued amount {2} against loan {3}
+Row {0}: Project must be same as the one set in the Timesheet: {1}.
+Row {0}: Purchase Invoice {1} has no stock impact.
+Row {0}: Target Warehouse is mandatory for internal transfers
+Row {0}: To set {1} periodicity, difference between from and to date must be greater than or equal to {2}
+Row {0}: {1} account already applied for Accounting Dimension {2}
+Row {0}: {1} {2} cannot be same as {3} (Party Account) {4}
+Row {0}: {1} {2} of {3} is pledged against Loan {4}.
+SQL Explain
+SQL Queries
+SQL Query
+STATEMENTS OF ACCOUNTS
+STRING_AGG
+SWATCHES
+Salary Component 
+Salary Expectation
+Salary Slip Leave
+Salary Slip already exists for {0}
+Salary Slips already exists for employees {}, and will not be processed by this payroll.
+Salary components should be part of the Salary Structure.
+Salary range per month
+Sales Invoice created successfully
+Sales Invoice {0} created
+Sales Order Reference
+Sales Order Status
+Sales Partner 
+Sales Partner Item
+Save API Secret: {0}
+Save Customizations
+Savings
+Scan
+Scan QRCode
+Scheduled On
+Scheduled Time must be a future time.
+Scheduler is inactive. Cannot enqueue job.
+Scheduling
+Scorecard variables can be used, as well as:|||{total_score} (the total score from that period),|||{period_number} (the number of periods to present day)|||
+Scrap Asset
+Scrap Item Code
+Scrap Item Name
+Scrap/Loss Item: {0} should have Is Process Loss checked as it is the same as the item to be manufactured or repacked.
+Scrap/Loss Item: {0} should have Qty less than finished goods Quantity.
+Scrap/Loss Item: {0} should have Rate set to 0 because Is Process Loss is checked.
+Scrap/Loss Item: {0} should not have Is Process Loss checked as it is different from  the item to be manufactured or repacked
+Search Bar
+Search by item code, serial number or barcode
+Search for {0}
+Search or type a command (Ctrl + G)
+Secondary Party
+Secondary Role
+See all Activity
+See your Published Items
+See your Published Items.
+Selecionar Faturas
+Selecionar faturas
+Select  Leave Approver for an employee. The user one who will look after his/her Leave application
+Select Corrective Operation
+Select Country
+Select Currency
+Select Date of Birth. This will validate Employees age and prevent hiring of under-age staff.
+Select Date of joining. It will have impact on the first salary calculation, Leave allocation on pro-rata bases.
+Select Dimension
+Select Interview Round First
+Select Interview first
+Select Items for Quality Inspection
+Select Kanban
+Select Letterhead
+Select Network Printer
+Select Payroll Frequency.
+Select Time Zone
+Select Variant
+Select Variant for {0}
+Select Vouchers to Match
+Select Warehouses to get Stock for Materials Planning
+Select a Company this Employee belongs to. Other HR features like Payroll. Expense Claims and Leaves for this Employee will be created for a given company only.
+Select a Customer
+Select a default Holiday List for this Employee. The days listed in Holiday List will not be counted in Leave Application.
+Select an invoice to load summary data
+Select atleast one Social Media Platform to Share on.
+Select the Employee for which you want to allocate leaves.
+Select the Employee.
+Select the Leave Type like Sick leave, Privilege Leave, Casual Leave, etc.
+Select the date after which this Leave Allocation will expire.
+Select the date from which this Leave Allocation will be valid.
+Select the end date for your Leave Application.
+Select the role that is allowed to submit transactions that exceed credit limits set. The credit limit can be set in the Customer form.
+Select the start date for your Leave Application.
+Select type of leave the employee wants to apply for, like Sick Leave, Privilege Leave, Casual Leave, etc.
+Select your Leave Approver i.e. the person who approves or rejects your leaves.
+Select your weekly off day
+Selected Fields
+Self delivery
+Sell Asset
+Send Interview Feedback Reminder
+Send Interview Reminder
+Send Leave Notification
+Send Web View Link
+Separation Activities
+Sequential
+Serial No Ledger
+Serial No and Batch for Finished Good
+Serial No {0} has already been received in the {1} #{2}
+Serial Nos
+Serial Nos Mismatch
+Serialised and Batch Setting
+Server was too busy to process this request. Please try again.
+Service (optional)
+Service Expenses
+Service Provider
+Service Unit Capacity
+Service Unit Name
+Service Unit Name and Company are mandatory to create Healthcare Service Units
+Service Unit Not Found
+Service Unit Tree
+Service Unit:
+Set Address
+Set From Warehouse
+Set Limit
+Set Operating Cost Based On BOM Quantity
+Set Process Loss Item Quantity
+Set all private
+Set all public
+Set quantity of process loss item:
+Set the frequency for holiday reminders
+Set the status manually.
+Set this template as the default for all sales transactions
+Set {0} in asset category {1} for company {2}
+Sets 'From Warehouse' in each row of the items table.
+Sets the current page as default for all users
+Sets the number of concurrent appointments allowed
+Setting the account as a Company Account is necessary for Bank Reconciliation
+Shared with the user {0} with {1} access
+Shipment
+Shipment Amount
+Shipment Delivery Note
+Shipment ID
+Shipment Information
+Shipment Parcel
+Shipment Parcel Template
+Shipment Type
+Shipment details
+Shipping Address Details
+Shop by Category
+Shopify Integration will be removed from ERPNext in Version 14. Please install {0} app to continue using it.
+Shopify Order Id
+Shortfall Percentage
+Shortfall Repayment of {0}
+Shortfall Repayment of {0}.||||Repayment against Loan: {1}
+Show Absolute Values
+Show Barcode Field in Stock Transactions
+Show Completed Orders
+Show Failed Jobs
+Show GL Balance
+Show Leave Balances in Salary Slip
+Show Remarks
+Show link to document
+Show pending entries
+Show with upcoming revenue/expense
+Sidebar
+Similar to the previous option, this unlinks any advance payments made against Purchase/Sales Orders.
+Simple Python formula applied on Reading fields.<br> Numeric eg. 1: <b>reading_1 &gt; 0.2 and reading_1 &lt; 0.5</b><br>|||Numeric eg. 2: <b>mean &gt; 3.5</b> (mean of populated fields)<br>|||Value based eg.:  <b>reading_value in ("A", "B", "C")</b>
+Simultaneous
+Site
+Site Backup
+Sites and Apps
+Situação
+Skill Assessment
+Skipped
+Sold by
+Sorry! We could not find what you were looking for.
+Sorry, something went wrong. Please refresh.
+Source and Rating
+South Africa VAT Account
+South Africa VAT Settings
+Spliting {} {} into {} row(s) as per Payment Terms
+Stack Trace
+Stale Days should start from 1.
+Standard Document Types
+Standard Rated Expenses
+Standard Terms and Conditions that can be added to Sales and Purchases.||||||Examples:||||||1. Validity of the offer.|||1. Payment Terms (In Advance, On Credit, part advance etc).|||1. What is extra (or payable by the Customer).|||1. Safety / usage warning.|||1. Warranty if any.|||1. Returns Policy.|||1. Terms of shipping, if applicable.|||1. Ways of addressing disputes, indemnity, liability, etc.|||1. Address and Contact of your Company.
+Standard Working Hours
+Standard rated supplies in {0}
+Standard tax template that can be applied to all Purchase Transactions. This template can contain list of tax heads and also other expense heads like "Shipping", "Insurance", "Handling" etc.||||||#### Note||||||The tax rate you define here will be the standard tax rate for all **Items**. If there are **Items** that have different rates, they must be added in the **Item Tax** table in the **Item** master.||||||#### Description of Columns||||||1. Calculation Type: |||    - This can be on **Net Total** (that is the sum of basic amount).|||    - **On Previous Row Total / Amount** (for cumulative taxes or charges). If you select this option, the tax will be applied as a percentage of the previous row (in the tax table) amount or total.|||    - **Actual** (as mentioned).|||2. Account Head: The Account ledger under which this tax will be booked|||3. Cost Center: If the tax / charge is an income (like shipping) or expense it needs to be booked against a Cost Center.|||4. Description: Description of the tax (that will be printed in invoices / quotes).|||5. Rate: Tax rate.|||6. Amount: Tax amount.|||7. Total: Cumulative total to this point.|||8. Enter Row: If based on "Previous Row Total" you can select the row number which will be taken as a base for this calculation (default is the previous row).|||9. Consider Tax or Charge for: In this section you can specify if the tax / charge is only for valuation (not a part of total) or only for total (does not add value to the item) or for both.|||10. Add or Deduct: Whether you want to add or deduct the tax.
+Standard tax template that can be applied to all Sales Transactions. This template can contain list of tax heads and also other expense / income heads like "Shipping", "Insurance", "Handling" etc.||||||#### Note||||||The tax rate you define here will be the standard tax rate for all **Items**. If there are **Items** that have different rates, they must be added in the **Item Tax** table in the **Item** master.||||||#### Description of Columns||||||1. Calculation Type: |||    - This can be on **Net Total** (that is the sum of basic amount).|||    - **On Previous Row Total / Amount** (for cumulative taxes or charges). If you select this option, the tax will be applied as a percentage of the previous row (in the tax table) amount or total.|||    - **Actual** (as mentioned).|||2. Account Head: The Account ledger under which this tax will be booked|||3. Cost Center: If the tax / charge is an income (like shipping) or expense it needs to be booked against a Cost Center.|||4. Description: Description of the tax (that will be printed in invoices / quotes).|||5. Rate: Tax rate.|||6. Amount: Tax amount.|||7. Total: Cumulative total to this point.|||8. Enter Row: If based on "Previous Row Total" you can select the row number which will be taken as a base for this calculation (default is the previous row).|||9. Is this Tax included in Basic Rate?: If you check this, it means that this tax will not be shown below the item table, but will be included in the Basic Rate in your main item table. This is useful where you want give a flat price (inclusive of all taxes) price to customers.
+Standard user type {0} can not be deleted.
+Start Job
+Start Recording
+Start date: {0}
+Start recording or drag & drop a previously exported data file to view it.
+Stash
+Stock Consumed During Repair
+Stock Consumption Details
+Stock Entries already created for Work Order {0}: {1}
+Stock Ledger Invariant Check
+Stock Reposting Settings
+Stock Transactions Settings
+Stock Value ({0}) and Account Balance ({1}) are out of sync for account {2} and it's linked warehouses as on {3}.
+Stock transactions that are older than the mentioned days cannot be modified.
+Stock/Accounts can not be frozen as processing of backdated entries is going on. Please try again later.
+Strip EXIF tags from uploaded images
+Sub Assembly Item Code
+Sub Assembly Items
+Sub Operation
+Sub Operations
+Subcontract Order Summary
+Subcontracting
+Submit Feedback
+Submit Invoice Automatically
+Submit on Creation
+Submitting Review ...
+Subscription Status
+Success URI
+Successfully linked to Customer
+Successfully linked to Supplier
+Sum of Repair Cost and Value of Consumed Stock Items.
+Sum of all previous slabs
+Supplied Item
+Supplier Address Details
+Supplier Contact
+Supplier Group Item
+Supplier Item
+Supplier Primary Address
+Supplier Primary Contact
+Supplier Warehouse mandatory for sub-contracted {0}
+Supplies made to Composition Taxable Persons
+Supplies subject to the reverse charge provision
+Surgery
+Surgical history
+Switch
+Switch Branch
+Switch Theme
+Sync Based On
+Sync Missing Old Shopify Orders
+Sync Now
+Sync Started
+Syncing Missing Orders
+Syntax Error
+System Notifications
+System Updates
+System will automatically create the serial numbers / batch for the Finished Good on submission of work order
+System will not check overbilling since amount for Item {0} in {1} is zero
+TDS Payable
+TO_TSVECTOR
+Table Fieldname
+Table Fieldname Missing
+Tabloid
+Take Exact Completed Years
+Target Warehouse is set for some items but the customer is not an internal customer.
+Task {0} depends on Task {1}. Please add Task {1} to the Tasks list.
+Tax Breakup Table Based On HSN Code
+Tax Exemption 80G Certificate
+Tax Exemption 80G Certificate Detail
+Tax ID missing for {} in the company document
+Tax Liability (Advances Received) - 11A(1), 11A(2)
+Tax Refunds provided to Tourists under the Tax Refunds for Tourists Scheme
+Tax Withholding Category {} against Company {} for Customer {} should have Cumulative Threshold value.
+Tax category can be set on Addresses. An address can be Shipping or Billing address. Set which addres to select when applying Tax Category.
+Tax detail table fetched from item master as a string and stored in this field.|||Used for Taxes and Charges
+Tax will be withheld only for amount exceeding the cumulative threshold
+TaxJar Nexus
+Taxes Table
+Taxes and Charges Template
+Team
+Team Members Subtitle
+Telefone
+Telephony
+Temperature
+Temporary Against Account Number
+Territory Item
+Test rename new
+Thank you for submitting your review
+Thank you for the review
+Thank you for your valuable feedback!
+Thanks
+The Certificate Date is not in the Fiscal Year {0}
+The Client ID obtained from the Google Cloud Console under <a href="https://console.cloud.google.com/apis/credentials">|||"APIs &amp; Services" &gt; "Credentials"|||</a>
+The File URL you've entered is incorrect
+The Linked Item should be a service item
+The Payment Request {0} is already paid, cannot process payment twice
+The Sum Total of Amounts of All Selected Vouchers Should be Less than the Unallocated Amount of the Bank Transaction
+The application name will be used in the Login page.
+The browser API key obtained from the Google Cloud Console under <a href="https://console.cloud.google.com/apis/credentials">|||"APIs &amp; Services" &gt; "Credentials"|||</a>
+The date on which Salary Component with Amount will contribute for Earnings/Deduction in Salary Slip. 
+The days between {0} to {1} are not valid holidays.
+The document type selected is a child table, so the parent document type is required.
+The field {0} is mandatory
+The finished product {0} quantity {1} and For Quantity {2} cannot be different
+The following Items, having Putaway Rules, could not be accomodated:
+The fraction of Daily Salary per Leave should be between 0 and 1
+The input you've entered doesn't match the GSTIN format for UIN Holders or Non-Resident OIDAR Service Providers
+The input you've entered doesn't match the format of GSTIN.
+The items {0} and {1} are present in the following {2} :
+The limit has not set for the user type {0} in the site config file.
+The metrics for this report are calculated based on the Standard Working Hours. Please set {0} in {1}.
+The operation {0} can not add multiple times
+The operation {0} can not be the sub operation
+The page you are looking for has gone missing.
+The percentage by which you can overbill transactions. For example, if the order value is $100 for an Item and percentage here is set as 10% then you are allowed to bill for $110.
+The percentage you are allowed to transfer more against the quantity ordered. For example, if you have ordered 100 units, and your Allowance is 10%, then you are allowed transfer 110 units.
+The project number obtained from Google Cloud Console under <a href="https://console.cloud.google.com/iam-admin/settings">|||"IAM &amp; Admin" &gt; "Settings"|||</a>
+The role {0} should be a custom role.
+The selected {0} does not contain the selected Asset Item.
+The serial no {0} has added multiple times in the stock entry {1}
+The sync has started in the background, please check the {0} list for new records.
+The system is being updated. Please refresh again after a few moments.
+The task has been enqueued as a background job. In case there is any issue on processing in background, the system will add a comment about the error on this Stock Reconciliation and revert to the Submitted stage
+The total column width cannot be more than 10.
+The total number of user document types limit has been crossed.
+The user that will be used to create Donations, Memberships, Invoices, and Payment Entries. This user should have the relevant permissions.
+The users with this Role are allowed to create/modify a stock transaction, even though the transaction is frozen.
+The {0} {1} is used to calculate the valuation cost for the finished good {2}.
+There are no upcoming events for you.
+There are not enough asset created or linked to {0}. Please create or link {1} Assets with respective document.
+There aren't any item variants for the selected item
+There is already a valid Lower Deduction Certificate {0} for Supplier {1} against category {2} for this time period.
+There is no Salary Structure assigned to {0}. First assign a Salary Stucture.
+There must be atleast 1 Finished Good in this Stock Entry
+There was an error creating Bank Account while linking with Plaid.
+There was an error syncing transactions.
+There was an error updating Bank Account {} while linking with Plaid.
+There was an issue connecting to Plaid's authentication server. Check browser console for more information
+There were issues unlinking payment entry {0}.
+There's no Employee with Salary Structure: {0}. Assign {1} to an Employee to preview Salary Slip
+There's nothing here
+These leaves are holidays permitted by the company however, availing it is optional for an Employee.
+These settings are required if 'Custom' LDAP Directory is used
+This Doctype does not contain latitude and longitude fields
+This Doctype does not contain location fields
+This Donor Type will be set for the Donor created via Donation web form entry.
+This company will be set for the Donations created via webhook.
+This company will be set for the Memberships created via webhook.
+This data importer utility is deprecated and will be removed, use {} instead.
+This document is already amended, you cannot amend it again
+This field allows you to set the maximum number of consecutive leaves an Employee can apply for.
+This field allows you to set the maximum number of leaves that can be allocated annually for this Leave Type while creating the Leave Policy
+This field is used to set the 'Customer'.
+This field will appear only if the fieldname defined here has value OR the rules are true (examples): |||myfield|||eval:doc.myfield=='My Value'|||eval:doc.age&gt;18
+This filter will be applied to Journal Entry.
+This item filter has already been applied for the {0}
+This method can only be accessed in development
+This option can be checked to edit the 'Posting Date' and 'Posting Time' fields.
+This table is used to set details about the 'Item', 'Qty', 'Basic Rate', etc.
+This {} will be treated as material transfer.
+Time Taken
+Time in Queries (ms)
+Time in mins
+Time in mins.
+Time slot is not available
+Timeless Night
+Tipo de Cliente
+To Delivery Date
+To Order Id
+To Payment Date
+To add dynamic subject, use jinja tags like||||||<div><pre><code>New {{ doc.doctype }} #{{ doc.name }}</code></pre></div>
+To add dynamic subject, use jinja tags like||||||<div><pre><code>{{ doc.name }} Delivered</code></pre></div>
+To apply for a Half Day check 'Half Day' and select the Half Day Date
+To be Delivered to Customer
+To cancel a {} you need to cancel the POS Closing Entry {}.
+To duplcate current row
+To make material requests, 'Make Material Request for Warehouse' field is mandatory
+To set the role {0} in the user {1}, kindly set the {2} field as {3} in one of the {4} record.
+To submit the invoice without purchase order please set {0} as {1} in {2}
+To submit the invoice without purchase receipt please set {0} as {1} in {2}
+To(Year)
+To(Year) year can not be less than From(year) 
+Tobacco past use
+Tobacco use
+Today is {0}'s birthday 🎉
+Today {0} at our Company! 🎉
+Toggle Full Width
+Toggle Theme
+Token Cache
+Token Type
+Token URI
+Top Center
+Top Right
+Total Allocated Leave
+Total Amount can not be zero
+Total Billing Hours
+Total Deduction (Company Currency)
+Total Hours (T)
+Total Interest Paid
+Total Issues
+Total Item Value + Taxes - Discount is not equal to the Invoice Grand Total. Please check taxes / discounts for any correction.
+Total Items
+Total Operation Time
+Total Penalty Paid
+Total Pending Interest Amount
+Total Repair Cost
+Total Selected Qty
+Total Supplied Qty
+Total Taxable Value of the items is not equal to the Invoice Net Total. Please check item taxes / discounts for any correction.
+Total Time (in Mins)
+Total Value
+Total Value of the items is not equal to the Invoice Grand Total. Please check item taxes / discounts for any correction.
+Total allocated leaves {0} cannot be less than already approved leaves {1} for the period
+Total in words (Company Currency)
+Total salary booked against this component for this employee from the beginning of the year (payroll period or fiscal year) up to the current salary slip's end date.
+Total salary booked for this employee from the beginning of the month up to the current salary slip's end date.
+Total salary booked for this employee from the beginning of the year (payroll period or fiscal year) up to the current salary slip's end date.
+Total working Days Per Year
+Track
+Track Remote
+Track if your email has been opened by the recipient.|||<br>|||Note: If you're sending to multiple recipients, even if 1 recipient reads the email, it'll be considered "Opened"
+Tracking Status
+Tracking Status Info
+Tracking URL
+Transaction Deletion Record
+Transaction Deletion Record Item
+Transaction Limit
+Transaction Settings
+Transactions Settings
+Transactions against the Company already exist! Chart of Accounts can only be imported for a Company with no transactions.
+Transactions cannot be created for an Inactive Employee {0}.
+Transfer Asset
+Treatment Plan Template
+Treatment Plan Template Item
+Treatment Plan Template Practitioner
+Tweet length Must be less than 280.
+Tweet length must be less than 280.
+Twitter Error {0} : {1}
+Type Distribution
+Type here. Use markdown to format.
+Type of the new Service Unit
+Type title
+UAE VAT 201
+UAE VAT Account
+UAE VAT Accounts
+UAE VAT Settings
+URIs for receiving authorization code once the user allows access, as well as failure responses. Typically a REST endpoint exposed by the Client App.|||<br>e.g. http://hostname//api/method/frappe.www.login.login_via_facebook
+URL must start with http:// or https://
+Unassigned Qty
+Unbilled Services
+Unclaimed Amount
+Under Review
+Undo
+Undue Booked Interest
+Uninstall App
+Unmarked Days is treated as {0}. You can can change this in {1}
+Unpublish {0}?
+Unrealized Profit / Loss Account
+Unrealized Profit / Loss account for intra-company transfers
+Unreconciled Amount
+Unreconciled Entries
+Untracked Hours (U)
+Upcoming Holidays Reminder
+Update Counter
+Update Counter Value for Prefix: {0}
+Update E-Way Bill Cancelled Status?
+Update Existing Price List Rate
+Update Nexus List
+Update Rate as per Last Purchase
+Updated via 'Time Log' (In Minutes)
+Updating Work Order status
+Upload Bank Statement
+Upper Range
+Use HTML
+Use Item based reposting
+Use different login
+Use original name for amended document
+Used Leave
+User Document Type
+User Document Types Limit Exceeded
+User Forum
+User Group
+User Group Member
+User Group Members
+User Id Field
+User Id Field is mandatory in the user type {0}
+User Select Document Type
+User Type Module
+User does not have permission to create the new {0}
+User exists with Email {}, Mobile {}<br>Please check email / mobile or disable 'Invite as User' to skip creating User
+Userinfo URI
+Users with this Role are allowed to set frozen accounts and create/modify accounting entries against frozen accounts.
+Users with this role are allowed to over bill above the allowance percentage
+Users with this role are allowed to over deliver/receive against orders above the allowance percentage
+Utilization
+VAT Accounts
+VAT Amount (AED)
+VAT Amount (SAR)
+VAT Audit Report
+VAT on Expenses and All Other Inputs
+VAT on Sales and All Other Outputs
+Valor
+Valor Total
+Valor total das Faturas
+Valuation Rate (In / Out)
+Valuation rate for customer provided items has been set to zero.
+Value Based Inspection
+Value Details
+Value of Goods
+Value of goods cannot be 0
+Ver boleto
+Ver boleto em PDF
+Via Landed Cost Voucher
+View Feedback
+View General Ledger
+View More
+View Switcher
+View all reviews
+View in Quote
+View site
+Visits Completed
+Voice Call Settings
+Waiting for payment...
+Want to join the discussion?
+Warehouse Capacity Summary
+Warehouse Capacity for Item '{0}' must be greater than the existing stock level of {1} {2}.
+Warehouse {0} does not belong to Company {1}.
+Warehouse {0} is not linked to any account, please mention the account in the warehouse record or set default inventory account in company {1}.
+Warning: Updating counter may lead to document name conflicts if not done properly
+Web Template is not specified
+Webhook Request Log
+Website Filters
+Website Item already exists against Item {0}
+Website Item already exists against {0}
+Website Item {0} has been created.
+Weight (kg)
+When checked, if user proceeds to make payment from an invoice, the system will open a Journal Entry instead of a Payment Entry.
+Why is this Candidate Qualified for this Position?
+Width (cm)
+Will be serially suffixed to maintain uniquness. Example: 'Ward' will be named as 'Ward-####'
+Wishlist
+Wishlist is empty !
+Wishlist is empty!
+Withdrawal
+Work Anniversaries 
+Work Anniversary Reminder
+Work Experience Calculation method
+Work Order / Subcontract PO
+Work Order Tree
+Work References
+Workspace
+Workspace Chart
+Workspace Link
+Workspace Shortcut
+Write Off Details
+Write Off amount cannot be greater than pending loan amount
+Write a Review
+Write off amount cannot be greater than pending principal amount
+Written Off Amount
+Wrong Company
+Wrong Template
+Year To Date
+Year To Date(Company Currency)
+Year(s)
+Years(s)
+Yes, Proceed
+You are not a verified customer yet. Please contact us to proceed.
+You are not allowed to edit the report.
+You are not authorized to make/edit Stock Transactions for Item {0} under warehouse {1} before this time.
+You are not verified to write a review yet.
+You are trying to unpledge more.
+You can add a row for a tax rule here. These rules can be applied on the net total, or can be a flat amount.
+You can also copy-paste following link in your browser
+You can claim only an amount of {0}, the rest amount {1} should be in the application as pro-rata component
+You can continue with the onboarding after exploring this page
+You can not define multiple slabs if you have a slab with no lower and upper limits.
+You can only have one default page that extends a particular standard page.
+You can only set the 3 custom doctypes in the Document Types table.
+You can't make any changes to Job Card since Work Order is stopped.
+You cannot change the rate if BOM is mentioned against any Item.
+You cannot edit the invoice after generating IRN
+You didn't have permission to access this API
+You do not have Read or Select Permissions for {}
+You have entered a duplicate Delivery Note on Row
+You have not saved any items yet.
+You haven't created a {0} yet
+You hit the rate limit because of too many requests. Please try after sometime.
+You must add atleast one credentials to be able to use E Invoicing.
+You must cancel IRN before cancelling the document.
+You must first use the portal to cancel the e-way bill and then update the cancelled status in the ERPNext system.
+You must generate IRN before submitting the document.
+You must {} your {} in order to have document id of {} length 16.
+You need to cancel POS Closing Entry {} to be able to cancel this document.
+You need to enable <b>Send Acknowledge Email</b> in {0}
+You need to set <b>Debit Account</b> in {0}
+You need to set <b>Default Company</b> for invoicing in {0}
+You need to set <b>Payment Account</b> for Donation in {0}
+You need to set <b>Payment Account</b> for Membership in {0}
+You need {0} permission to fetch values from {1} {2}
+You seem to have written your name instead of your email. Please enter a valid email address so that we can get back.
+Your Interview session is rescheduled from {0} {1} - {2} to {3} {4} - {5}
+Your new password has been set successfully.
+Your verification code is {0}
+Zero Rated
+[Important] [ERPNext] Razorpay donation webhook failed, please check.
+[{0}](/app/Form/Item/{0}) is out of stock
+__Auth
+added rows for {0}
+as a percentage of finished item quantity
+assignees
+at
+chapters/chapter_name|||leave blank automatically set after saving chapter.
+commented
+company
+component
+count
+credit
+d
+debit
+description
+discount applied
+doc
+document id {} exceed 16 letters.
+from
+gle_posting_date
+h
+in category {0}
+item
+jane@example.com
+ldc
+m
+maximum
+modify
+must be between 0 and 100
+name
+naming series
+negative outstanding amount
+nonce
+on {0}
+out of 5
+overwrite
+p
+paid_amount
+pe
+performing either one below:
+plain
+qty
+rank
+ratings
+removed rows for {0}
+return_amount
+s
+s256
+selected Payment Terms Template
+should not
+slots available for booking
+stock_qty
+string value, i.e. group
+string value, i.e. member
+test
+this form
+to know more
+to unallocate the amount of this Return Invoice before cancelling it.
+unique_count
+wi
+{0} <br> This error can be due to missing or deleted field.
+{0} Account not found against Customer {1}.
+{0} Liked
+{0} Map
+{0} Not in Stock
+{0} Page views
+{0} Service Units created
+{0} Updated
+{0} View
+{0} Views
+{0} appreciation point for {1}
+{0} appreciation points for {1}
+{0} are not valid options for Search Index Field.
+{0} cancelled this document
+{0} cancelled this document {1}
+{0} changed value of {1}
+{0} changed value of {1} {2}
+{0} changed values for {1}
+{0} changed values for {1} {2}
+{0} criticism point for {1}
+{0} criticism points for {1}
+{0} currency must be same as company's default currency. Please select another account.
+{0} e-invoices cancelled successfully
+{0} e-invoices generated successfully
+{0} filter
+{0} filters
+{0} gained {1} points
+{0} gave {1} points
+{0} is mandatory for account {1}
+{0} is not a field of doctype {1}
+{0} is not a holiday.
+{0} is not a valid option for Search Index Field.
+{0} is not a zip file
+{0} is not allowed to submit Interview Feedback for the Interview: {1}
+{0} qty of Item {1} is being received into Warehouse {2} with capacity {3}.
+{0} removed their assignment.
+{0} removed.
+{0} removed. {1}
+{0} reviews
+{0} role does not have permission on any doctype
+{0} submission before {1} is not allowed
+{0} submitted this document
+{0} submitted this document {1}
+{0} translation pending
+{0} units of [{1}](/app/Form/Item/{1}) found in [{2}](/app/Form/Warehouse/{2})
+{0} viewed
+{0} will be given as discount.
+{0} {1} is not in any active Fiscal Year
+{0} {1}: Account {2} is a Group Account and group accounts cannot be used in transactions
+{0} {1}: Cost Center is required for 'Profit and Loss' account {2}.
+{0} {1}: Cost Center {2} is a group cost center and group cost centers cannot be used in transactions
+{0}% of total invoice value will be given as discount.
+{0}: {1} has fee validity till {2}
+{2} <b>{0}</b> has submitted Assets. Remove Item <b>{1}</b> from table to continue.
+{item_name}'s Sample Size ({sample_size}) cannot be greater than the Accepted Quantity ({accepted_quantity})
+{} - {} now have {} as they had no outstanding amount left before submitting the Payment Entry.
+{} Invalid python code on line {}
+{} Possibly invalid python code. <br>{}
+{} e-invoices cancelled successfully
+{} e-invoices generated successfully
+{} has been disabled. It can only be enabled if {} is checked.
+{} is a child company.
+{} is mandatory for generating E-Invoice Summary Report
+{} of {} {} ignored for item {} because you have {} role.
+{} wants to access the following details from your account
+{} {} is already linked with another {}
+🎊️🎊️ Work Anniversary Reminder 🎊️🎊️
