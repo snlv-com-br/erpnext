@@ -1,6 +1,6 @@
 # ERPNext - ABLA
 
-Branch "version-13" representa a versão do ERP utilizada em produção. Não há CI/CD configurado. Para aplicação das mudanças em ambiente de produção basta logar no [ERP-Manager](https://erp-mng.abla.com.br/) na página Bench Manager e executar o bench update
+Branch *"version-13" representa a versão do ERP utilizada em produção. Não há CI/CD configurado. Para aplicação das mudanças em ambiente de produção basta logar no [ERP-Manager](https://erp-mng.abla.com.br/) na página Bench Manager e executar o bench update
 
 ## Guia para desenvolvimento
 
