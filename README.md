@@ -158,4 +158,11 @@ Para instalação em ambiente de produção utilizou-se as seguintes fontes de r
 . Para configuração de multi tenancy, supervisor e nginx
     https://codewithkarani.com/2021/09/16/setup-erpnext-for-production/
     https://codewithkarani.com/2021/08/24/setting-up-multi-tenancy-in-erpnext/
-   
+    
+ ---
+ ## Como atualizar arquivos no serivor?
+ 
+ 
+Atualização tem sido feita manualmente. É necessário atualizar repositório local dos aplicativos, utilizando `bench update`.
+
+Em seguida relizar build dos arquivos para servir o site atualizado, com `bench update --patch`.
