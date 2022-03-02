@@ -45,6 +45,7 @@ from erpnext.setup.doctype.company.company import update_company_current_month_s
 from erpnext.stock.doctype.batch.batch import set_batch_nos
 from erpnext.stock.doctype.delivery_note.delivery_note import update_billed_amount_based_on_so
 from erpnext.stock.doctype.serial_no.serial_no import get_delivery_note_serial_no, get_serial_nos
+from erpnext.stock.utils import calculate_mapped_packed_items_return
 
 form_grid_templates = {
 	"items": "templates/form_grid/item_grid.html"
@@ -293,7 +294,7 @@ class SalesInvoice(SellingController):
 				filters={ invoice_or_credit_note: self.name },
 				pluck="pos_closing_entry"
 			)
-			if pos_closing_entry:
+			if pos_closing_entry and pos_closing_entry[0]:
 				msg = _("To cancel a {} you need to cancel the POS Closing Entry {}.").format(
 					frappe.bold("Consolidated Sales Invoice"),
 					get_link_to_form("POS Closing Entry", pos_closing_entry[0])
@@ -586,7 +587,10 @@ class SalesInvoice(SellingController):
 			frappe.throw(msg, title=_("Invalid Account"))
 
 		if self.customer and account.account_type != "Receivable":
-			msg = _("Please ensure {} account is a Receivable account.").format(frappe.bold("Debit To")) + " "
+			msg = _("Please ensure {} account {} is a Receivable account.").format(
+				frappe.bold("Debit To"),
+				frappe.bold(self.debit_to)
+			) + " "
 			msg += _("Change the account type to Receivable or select a different account.")
 			frappe.throw(msg, title=_("Invalid Account"))
 
@@ -745,8 +749,11 @@ class SalesInvoice(SellingController):
 
 	def update_packing_list(self):
 		if cint(self.update_stock) == 1:
-			from erpnext.stock.doctype.packed_item.packed_item import make_packing_list
-			make_packing_list(self)
+			if cint(self.is_return) and self.return_against:
+				calculate_mapped_packed_items_return(self)
+			else:
+				from erpnext.stock.doctype.packed_item.packed_item import make_packing_list
+				make_packing_list(self)
 		else:
 			self.set('packed_items', [])
 
