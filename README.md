@@ -160,9 +160,9 @@ Para instalação em ambiente de produção utilizou-se as seguintes fontes de r
     https://codewithkarani.com/2021/08/24/setting-up-multi-tenancy-in-erpnext/
     
  ---
- ## Como atualizar arquivos no serivor?
+ ## Como atualizar arquivos no ambiente em produção?
  
  
-Atualização tem sido feita manualmente. É necessário atualizar repositório local dos aplicativos, utilizando `bench update`.
+Atualização tem sido feita manualmente. É necessário conectar ao servidor e atualizar repositório local dos aplicativos utilizando `bench update`.
 
 Em seguida relizar build dos arquivos para servir o site atualizado, com `bench update --patch`.
