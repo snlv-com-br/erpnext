@@ -166,3 +166,18 @@ Para instalação em ambiente de produção utilizou-se as seguintes fontes de r
 Atualização tem sido feita manualmente. É necessário conectar ao servidor e atualizar repositório local dos aplicativos utilizando `bench update`.
 
 Em seguida relizar build dos arquivos para servir o site atualizado, com `bench update --patch`.
+
+---
+## Como manipular as traduções?
+
+Traduções para pt-BR estão localizadas na pasta translations no arquivo [pt.csv](https://github.com/snlv-com-br/erpnext/blob/version-13/erpnext/translations/pt.csv).
+
+As expressões traduzidas podem ser identificadas no html do erpnext através das implementações do JINJA com o seguinte formato `{{ _(“word”) }}`.
+
+Algumas regras devem ser seguidas para que não ocorra "Internal Error" ao criar páginas. Dentre elas:
+
+. Se a expressão possui vírgulas deve ser englobada por aspas duplas.
+
+. Se a expressão possui palavras com aspas duplas e vírgulas as aspas duplas dentro da expressão devem ser substituídas por DUAS aspas duplas. Em seguinda a expressão deve ser englobada por aspas duplas.
+
+Alterações na tradução precisam do build para serem servidas pelo servidor. Para isso utilize o comando `bench update --patch`.
